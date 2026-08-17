@@ -1,0 +1,75 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Python bytecode and tooling
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments and local configuration
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Build and package outputs
+build/
+dist/
+*.egg-info/
+
+# IDEs and notebooks
+.idea/
+.vscode/
+.ipynb_checkpoints/
+
+# Local caches and temporary files
+.cache/
+.tmp/
+.torch_cache/
+.huggingface/
+tmp/
+temp/
+
+# Competition data and generated submissions
+data/
+datasets/
+submissions/
+*.parquet
+*.feather
+*.arrow
+
+# Experiment tracking and generated artifacts
+artifacts/
+outputs/
+runs/
+wandb/
+mlruns/
+checkpoints/
+
+# Large model files. Restore the bundled baseline model from the organizer archive.
+models/
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+*.msgpack
+*.joblib
+!baseline_logreg_l12.joblib
+
+# Local archives
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
