@@ -73,3 +73,5 @@ models/
 *.tar.gz
 *.tgz
 
+# данные разметки — исключение из глобального *.parquet
+!labeling/*.parquet
