@@ -78,3 +78,4 @@ models/
 # исполненные ноутбуки с выводами — исключение из runs/
 !notebooks/runs/
 !notebooks/runs/**
+!data_polygon/*.parquet
