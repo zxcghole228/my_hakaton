@@ -75,3 +75,6 @@ models/
 
 # данные разметки — исключение из глобального *.parquet
 !labeling/*.parquet
+# исполненные ноутбуки с выводами — исключение из runs/
+!notebooks/runs/
+!notebooks/runs/**
