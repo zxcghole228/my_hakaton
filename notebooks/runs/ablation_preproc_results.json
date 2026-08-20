@@ -1,0 +1,7 @@
+[
+ {"name": "tiny_v1_160", "text": "v1", "max_len": 160, "swap": false, "fast_macro": 0.5581, "full_macro": 0.5579, "minutes": 59.2},
+ {"name": "tiny_v2_192", "text": "v2", "max_len": 192, "swap": false, "fast_macro": 0.55, "full_macro": 0.5466, "minutes": 87.0},
+ {"name": "tiny_v3_192", "text": "v3", "max_len": 192, "swap": false, "fast_macro": 0.5648, "full_macro": 0.5637, "minutes": 87.5},
+ {"name": "tiny_v1_224", "text": "v1", "max_len": 224, "swap": false, "fast_macro": 0.5672, "full_macro": 0.5686, "minutes": 82.1},
+ {"name": "tiny_v1_160_swap", "text": "v1", "max_len": 160, "swap": true, "fast_macro": 0.5744, "full_macro": 0.5719, "minutes": 59.8}
+]
