@@ -1,0 +1,1 @@
+{"repos": [{"repoId": "intfloat/multilingual-e5-small", "repoType": "model", "commitHash": "614241f622f53c4eeff9890bdc4f31cfecc418b3", "filePaths": ["config.json", "tokenizer_config.json", "special_tokens_map.json", "tokenizer.json"]}]}
