@@ -1,0 +1,40 @@
+{
+  "experiment": "e5-small-v3-fashion-specialist-hybrid",
+  "source_notebook": {
+    "download_name": "v3-ozonecup-fix-old-bugs.ipynb",
+    "repository_path": "notebooks/e5_small_macro_v3_fashion_specialist_hybrid.ipynb",
+    "size_bytes": 186061,
+    "sha256": "2ee3bfceb65ef0c6a97fab4ee936b727ea658238e3ca9bfec14954c558bef8c7"
+  },
+  "source_bundle": {
+    "download_name": "results (1).zip",
+    "size_bytes": 3245756799,
+    "sha256": "019cc59bb89bc63a4ac6ccedff01ea5b81f661deb909311393a2ce6673032012",
+    "zip_crc_test": "passed"
+  },
+  "stored_local_artifacts": [
+    {
+      "path": "models/e5_small_macro_v3/checkpoints/e5_v3_best_specialist.pt",
+      "size_bytes": 470702271,
+      "sha256": "0546814b8950782e7116248ac557ed67ebd04098e5c0f9362aa5d9a8bbca7ada"
+    },
+    {
+      "path": "models/e5_small_macro_v3/checkpoints/e5_v3_resume.pt",
+      "size_bytes": 1412119762,
+      "sha256": "0ae0d6a752893faa8bbd4131e03b1d730ffe2fc1a5618887d433aab62fcededf"
+    },
+    {
+      "path": "models/e5_small_macro_v3/exports/e5_v3_hybrid_export.zip",
+      "size_bytes": 718451718,
+      "sha256": "ea84f56b9b0f6bfbabed5d3dfbe75292992234c8beffbd5f9141614c392d99a8"
+    }
+  ],
+  "export_model_hashes": {
+    "base_model_safetensors": "b7263e2c9f39cf73bfd1217c91ef613b9cbc9529fa95a062784215d4c568d92c",
+    "fashion_specialist_safetensors": "cb781e2a4d33cbe5825453fa9986f7f49b0a0c270b46cd4e22debf46449475ff"
+  },
+  "duplicate_checks": {
+    "e5_macro_v2_best_repacked.pt": "same 207 member names, sizes and CRC values as the stored V2 checkpoint",
+    "expanded_e5_v3_hybrid_export": "same 10 member names, sizes and CRC values as e5_v3_hybrid_export.zip"
+  }
+}

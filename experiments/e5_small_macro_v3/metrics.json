@@ -1,0 +1,28 @@
+{
+  "experiment": "E5-small V3 fashion specialist + variant signals + hard mining",
+  "base_model": "intfloat/multilingual-e5-small",
+  "base_checkpoint_step": 30000,
+  "base_public_lb": 0.4838757641,
+  "base_full_llm_macro": 0.7864823339791696,
+  "best_specialist_step": 4000,
+  "best_fast_hybrid_macro": 0.7906086444524086,
+  "specialist_full_fashion_macro": 0.5045279889491541,
+  "hybrid_full_llm_macro": 0.79018234651488,
+  "hybrid_delta_vs_v2": 0.0037000125357103952,
+  "routing": {
+    "Галантерея и аксессуары": "base",
+    "Обувь": "specialist",
+    "Одежда": "specialist",
+    "Ювелирные изделия": "specialist"
+  },
+  "max_len": 192,
+  "candidate_per_category": 200000,
+  "train_per_category": 150000,
+  "epochs": 2,
+  "backbone_lr": 8e-06,
+  "head_lr": 3e-05,
+  "effective_batch": 256,
+  "hard_frac": 0.5,
+  "random_frac": 0.3,
+  "stable_frac": 0.2
+}

@@ -8,14 +8,17 @@
 
 ## 1. Коротко: текущее состояние
 
-В ветке сохранены две независимые линии решения:
+В ветке сохранены baseline и два независимых готовых E5 solution:
 
 1. **Исходный CrossEncoder baseline организаторов** — оставлен в корне
    репозитория без изменения его интерфейса запуска.
-2. **Наш основной E5-small submission** — находится в `solution/` и является
-   готовым решением для первой отправки.
+2. **E5-small V2 submission** — находится в `solutions/e5_small_v2/`, полностью
+   проверен и уже дал Public LB `0.4838757641`.
+3. **E5-small V3 Fashion Specialist** — находится в
+   `solutions/e5_small_v3_hybrid/`. Это готовый offline hybrid pipeline с
+   отдельной fashion-моделью и routing; он прошёл локальный smoke-test.
 
-Главный результат на текущий момент:
+Проверенный V2 fallback:
 
 - backbone: `intfloat/multilingual-e5-small`;
 - fine-tuned checkpoint: step `30000`;
@@ -27,6 +30,21 @@
 - формат запуска совместим с аргументами соревнования
   `--items_path`, `--matches_path`, `--output_path`;
 - модель и tokenizer загружаются полностью offline.
+
+Новый готовый V3 solution:
+
+- specialist инициализирован из V2 checkpoint;
+- исправлены exact fashion category names;
+- добавлены variant-сигналы и hard-example mining;
+- Best fast hybrid Macro PR-AUC: `0.790609`;
+- Hybrid Full LLM Macro PR-AUC: **`0.790182`**;
+- прирост относительно V2: **`+0.003700`**;
+- routing использует specialist для обуви, одежды и ювелирных изделий, а base
+  для галантереи.
+- готовый локальный архив: `e5_small_macro_v3_hybrid_submission.zip`;
+- формат запуска совпадает с V2 и интерфейсом соревнования;
+- модель и tokenizer загружаются полностью offline;
+- leaderboard score V3 пока не получен.
 
 Код решения, ноутбуки, отчёты и метрики находятся на GitHub. Данные, веса,
 checkpoint и ZIP-архивы намеренно не коммитятся из-за размера.
@@ -46,16 +64,30 @@ checkpoint и ZIP-архивы намеренно не коммитятся из
    категориям.
 7. Модель экспортирована в Hugging Face-совместимый offline-формат.
 8. В точности перенесён preprocessing V2 из тренировочного ноутбука.
-9. Собран автономный `solution/` под интерфейс организаторов.
+9. Собран автономный V2 solution под интерфейс организаторов.
 10. Проведён smoke-test на локальных parquet.
 11. Проверены схема `id1,id2,predict`, полнота строк, порядок ID, отсутствие
     NaN/Inf и диапазон вероятностей `[0, 1]`.
 12. Собран чистый submission ZIP без кэшей, тестовых данных, `.DS_Store` и
     лишнего корневого каталога.
 13. Код E5 submission запушен в ветку `minicooper1`.
+14. Получен Public LB V2 submission: `0.4838757641`.
+15. Обучен V3 fashion specialist с исправленными категориями, variant-сигналами
+    и hard mining.
+16. Выполнена полная hybrid validation V3: `0.790182347`, delta к V2
+    `+0.003700013`.
+17. Сохранены best specialist, полный resume checkpoint и hybrid export с base,
+    specialist, tokenizer и routing.
+18. Реализован отдельный V3 inference pipeline с точными variant-сигналами и
+    маршрутизацией по категории `id1`.
+19. V2 и V3 разнесены по `solutions/e5_small_v2/` и
+    `solutions/e5_small_v3_hybrid/`, поэтому они не перезаписывают друг друга.
+20. V3 прошёл smoke-test на 100 парах: CSV валиден, все строки полны, NaN/Inf
+    нет, base-строки совпадают с отдельным V2 pipeline.
+21. Собран и проверен чистый V3 submission ZIP.
 
-Публичного leaderboard score для этого E5 submission в ветке пока нет. Первую
-реальную отправку ещё нужно выполнить и затем записать её результат.
+Для V3 пока отсутствует только leaderboard score и full-size benchmark в
+контейнере соревнования.
 
 ## 3. Полное дерево ветки
 
@@ -77,48 +109,74 @@ matching-baseline-submit/
 ├── src/
 │   └── utils.py                             # Git: baseline preprocessing/inference
 │
-├── solution/                                # основной готовый E5 submission
-│   ├── README.md                            # Git: краткий запуск solution
-│   ├── metadata.json                        # Git: metadata submission
-│   ├── run.py                               # Git: entry point E5 submission
-│   ├── src/
-│   │   ├── __init__.py                      # Git
-│   │   ├── preprocessing.py                 # Git: точный preprocessing V2
-│   │   └── pipeline.py                      # Git: offline inference + CSV checks
-│   └── models/                              # local, целиком игнорируется Git
-│       └── e5_small_macro_v2_30k/
-│           ├── config.json
-│           ├── model.safetensors
-│           ├── tokenizer.json
-│           └── tokenizer_config.json
+├── solutions/                               # независимые готовые E5 submissions
+│   ├── README.md                            # Git: индекс V2/V3
+│   ├── e5_small_v2/                         # проверенный V2 fallback
+│   │   ├── README.md                        # Git: запуск и метрики V2
+│   │   ├── metadata.json                    # Git: metadata V2
+│   │   ├── run.py                           # Git: entry point V2
+│   │   ├── src/                             # Git: preprocessing/inference V2
+│   │   └── models/                          # local, ignored
+│   │       └── e5_small_macro_v2_30k/
+│   │           ├── config.json
+│   │           ├── model.safetensors
+│   │           ├── tokenizer.json
+│   │           └── tokenizer_config.json
+│   └── e5_small_v3_hybrid/                  # готовый V3 hybrid
+│       ├── README.md                        # Git: запуск, routing, проверки
+│       ├── metadata.json                    # Git: metadata V3
+│       ├── run.py                           # Git: entry point V3
+│       ├── src/                             # Git: V2 text + V3 signals/routing
+│       └── models/                          # local, ignored
+│           └── e5_small_v3_hybrid/
+│               ├── base_model/
+│               ├── fashion_specialist/
+│               ├── tokenizer/
+│               └── routing.json
 │
 ├── notebooks/                               # Git: воспроизводимые ноутбуки
 │   ├── e5_small_macro_llm_stageA_v2.ipynb
-│   └── e5_small_restore30k_fullval_export.ipynb
+│   ├── e5_small_restore30k_fullval_export.ipynb
+│   └── e5_small_macro_v3_fashion_specialist_hybrid.ipynb
 │
 ├── experiments/
 │   ├── README.md                            # Git: правила хранения экспериментов
-│   └── e5_small_macro_v2/
-│       ├── RUN_SUMMARY.md                   # Git: основной отчёт эксперимента
-│       ├── metrics.json                     # Git: агрегированные метрики
-│       ├── huggingface_source.json          # Git: ревизия backbone
-│       ├── llm_by_category.csv              # Git: LLM holdout по категориям
-│       ├── fashion_by_category.csv          # Git: четыре fashion-категории
-│       └── manual_by_category.csv           # Git: manual diagnostic
+│   ├── e5_small_macro_v2/
+│   │   ├── RUN_SUMMARY.md                   # Git: основной отчёт эксперимента
+│   │   ├── metrics.json                     # Git: агрегированные метрики
+│   │   ├── huggingface_source.json          # Git: ревизия backbone
+│   │   ├── llm_by_category.csv              # Git: LLM holdout по категориям
+│   │   ├── fashion_by_category.csv          # Git: четыре fashion-категории
+│   │   └── manual_by_category.csv           # Git: manual diagnostic
+│   └── e5_small_macro_v3/
+│       ├── RUN_SUMMARY.md
+│       ├── KAGGLE_RUN_SUMMARY.md
+│       ├── metrics.json
+│       ├── routing.json
+│       ├── artifacts.json
+│       ├── fashion_comparison.csv
+│       ├── hybrid_full_by_category.csv
+│       └── huggingface_source.json
 │
 ├── models/
 │   ├── README.md                            # Git: инвентаризация и SHA-256
 │   ├── cross-encoder-ms-marco-MiniLM-L12-v2/ # local: веса baseline
-│   └── e5_small_macro_v2/                   # local: E5-артефакты
+│   ├── e5_small_macro_v2/                   # local: V2-артефакты
+│   │   ├── checkpoints/
+│   │   │   └── e5_macro_v2_best.zip
+│   │   ├── exports/
+│   │   │   └── e5_macro_v2_30k_export.zip
+│   │   └── hf_export_30k/
+│   │       ├── config.json
+│   │       ├── model.safetensors
+│   │       ├── tokenizer.json
+│   │       └── tokenizer_config.json
+│   └── e5_small_macro_v3/                   # local: V3-артефакты
 │       ├── checkpoints/
-│       │   └── e5_macro_v2_best.zip
-│       ├── exports/
-│       │   └── e5_macro_v2_30k_export.zip
-│       └── hf_export_30k/
-│           ├── config.json
-│           ├── model.safetensors
-│           ├── tokenizer.json
-│           └── tokenizer_config.json
+│       │   ├── e5_v3_best_specialist.pt
+│       │   └── e5_v3_resume.pt
+│       └── exports/
+│           └── e5_v3_hybrid_export.zip
 │
 ├── data/                                    # local, целиком игнорируется Git
 │   ├── items_human.parquet
@@ -130,10 +188,11 @@ matching-baseline-submit/
 ├── docs/
 │   └── PENDING_FILES.md                     # Git: список ранних материалов
 │
-└── e5_small_macro_v2_30k_submission.zip     # local: готовый submission, ignored
+├── e5_small_macro_v2_30k_submission.zip     # local: готовый V2 ZIP, ignored
+└── e5_small_macro_v3_hybrid_submission.zip  # local: готовый V3 ZIP, ignored
 ```
 
-## 4. Почему в корне и в `solution/` есть отдельные `run.py`
+## 4. Почему в корне и в `solutions/` есть отдельные `run.py`
 
 Это сделано намеренно.
 
@@ -163,19 +222,17 @@ python -u run.py \
 Корневой pipeline оставлен как контрольная точка и пример формата организаторов.
 Для новой отправки E5 использовать его не нужно.
 
-### `solution/run.py`: наш текущий submission
+### `solutions/`: наши готовые submissions
 
-Файлы E5 submission:
+У каждой версии собственные entry point, preprocessing/inference, metadata и
+локальная модель:
 
-- `solution/run.py`;
-- `solution/src/preprocessing.py`;
-- `solution/src/pipeline.py`;
-- `solution/metadata.json`;
-- локальная модель `solution/models/e5_small_macro_v2_30k/`.
+- `solutions/e5_small_v2/` — уже проверенный на leaderboard V2 fallback;
+- `solutions/e5_small_v3_hybrid/` — новый V3 hybrid с двумя моделями и routing.
 
-Именно содержимое `solution/` без `README.md` упаковано в готовый ZIP. Если
-задача — проверить или отправить наш лучший текущий вариант, использовать нужно
-эту линию.
+Для новой V3 отправки использовать `solutions/e5_small_v3_hybrid/run.py`. Если
+понадобится точно воспроизвести уже оценённую V2 посылку, использовать
+`solutions/e5_small_v2/run.py`. Ни одна версия не зависит от кода другой.
 
 ## 5. Основной эксперимент E5-small Macro V2
 
@@ -258,9 +315,68 @@ preprocessing, split и inference.
 часть loss при этом работала, поэтому эксперимент валиден. При следующем
 fashion-oriented обучении exact category names нужно исправить.
 
-## 6. Preprocessing V2
+## 6. E5-small V3 Fashion Specialist + Hybrid Routing
 
-Точный код находится в `solution/src/preprocessing.py` и совпадает с training.
+V3 реализует следующий шаг, намеченный после анализа V2. Он не заменяет base
+глобально: отдельная модель дообучена на fashion и подключается по категориям,
+где fast validation подтверждает преимущество.
+
+### Конфигурация V3
+
+| Параметр | Значение |
+|---|---:|
+| Initialization | точные V2 weights, step 30 000 |
+| Fashion train source rows | 2 227 727 |
+| Balanced candidate pool | 800 000 |
+| Mined train | 600 000 |
+| Hard / random / stable | 50% / 30% / 20% |
+| Epochs | 2 |
+| Optimizer steps | 4 688 |
+| Best step | 4 000 |
+| Backbone LR | `8e-6` |
+| Head LR | `3e-5` |
+| Effective batch | 256 |
+| GPU / training time | Tesla T4 / 1.78 h |
+
+V3 сохраняет V2 group split, `MAX_LEN=192`, `MAX_ATTR_CHARS=460` и основной
+product text, но дополнительно извлекает размер, цвет, артикул, модель, пол и
+материал. Если размер или цвет отсутствуют в attributes, используется fallback
+из названия товара.
+
+### Метрики V3
+
+| Проверка | Macro PR-AUC |
+|---|---:|
+| V2 base fast | `0.786378890` |
+| Best V3 fast hybrid | `0.790608644` |
+| V2 base full | `0.786482334` |
+| V3 specialist fashion full | `0.504527989` |
+| **V3 hybrid full** | **`0.790182347`** |
+| **Delta к V2** | **`+0.003700013`** |
+
+Routing:
+
+```json
+{
+  "Галантерея и аксессуары": "base",
+  "Обувь": "specialist",
+  "Одежда": "specialist",
+  "Ювелирные изделия": "specialist"
+}
+```
+
+Подробный отчёт находится в
+`experiments/e5_small_macro_v3/RUN_SUMMARY.md`. Готовый offline pipeline
+находится в `solutions/e5_small_v3_hybrid/`; он использует этот routing и
+последовательно загружает base и specialist, чтобы не держать обе модели в
+памяти одновременно.
+
+## 7. Preprocessing V2
+
+Точный V2-код находится в
+`solutions/e5_small_v2/src/preprocessing.py`. V3 сохраняет тот же основной
+product text в `solutions/e5_small_v3_hybrid/src/preprocessing.py` и добавляет
+только обученные pair-level variant signals для specialist.
 
 Для каждого товара используется `name`, `attributes`, `category`:
 
@@ -286,9 +402,11 @@ fashion-oriented обучении exact category names нужно исправи
 `max_length=192`. Добавлять E5-префиксы `query:`/`passage:` нельзя: модель была
 обучена как sequence classifier без них.
 
-## 7. Как работает готовый E5 inference
+## 8. Как работает готовый E5 inference
 
-`solution/src/pipeline.py` выполняет следующие шаги:
+Оба solution выполняют общий набор проверок. V3-код находится в
+`solutions/e5_small_v3_hybrid/src/pipeline.py` и дополнительно применяет
+routing:
 
 1. Загружает из `matches_path` только `id1` и `id2`.
 2. Проверяет отсутствие null ID.
@@ -296,13 +414,15 @@ fashion-oriented обучении exact category names нужно исправи
 4. Потоково сканирует items parquet через PyArrow батчами по 400 000 строк.
 5. Строит тексты только для товаров, участвующих в matches.
 6. Падает с понятной ошибкой, если какой-либо нужный товар отсутствует.
-7. Загружает model/tokenizer только из локальной директории с
+7. Выбирает base/specialist по категории `id1` из `routing.json`.
+8. Загружает model/tokenizer только из локальной директории с
    `local_files_only=True`.
-8. Сортирует пары по примерной длине текста для уменьшения padding.
-9. Выполняет batched inference и возвращает predictions в исходный порядок.
-10. Применяет sigmoid к единственному logit.
-11. Проверяет колонки, количество строк, NaN/Inf и диапазон `[0, 1]`.
-12. Записывает CSV строго в формате `id1,id2,predict`.
+9. Последовательно выполняет base и specialist inference, освобождая первую
+   модель до загрузки второй.
+10. Сортирует пары по примерной длине текста для уменьшения padding.
+11. Возвращает predictions в исходный порядок и применяет sigmoid.
+12. Проверяет колонки, количество строк, NaN/Inf и диапазон `[0, 1]`.
+13. Записывает CSV строго в формате `id1,id2,predict`.
 
 Offline mode включается до импорта Transformers:
 
@@ -326,14 +446,14 @@ HF_DATASETS_OFFLINE=1
 Для ручного override можно задать `E5_BATCH_SIZE`, например:
 
 ```bash
-E5_BATCH_SIZE=128 python -u solution/run.py ...
+E5_BATCH_SIZE=128 python -u solutions/e5_small_v3_hybrid/run.py ...
 ```
 
 На CUDA используются FP16 для старых GPU и BF16 для Ampere/Hopper и новее.
 
-## 8. Как запустить E5 solution локально
+## 9. Как запустить E5 solution локально
 
-### 8.1. Необходимые зависимости
+### 9.1. Необходимые зависимости
 
 Официальный `metadata.json` использует image:
 
@@ -353,14 +473,13 @@ odsai/ecup26-matching-baseline:1.0
 
 Локальная `.venv/` в Git не хранится.
 
-### 8.2. Восстановить модель
+### 9.2. Восстановить модели
 
-После обычного `git clone` папки `solution/models/` не будет. Нужно получить
-экспорт `e5_macro_v2_30k_export.zip` из сохранённых Kaggle/local artifacts и
-разместить четыре файла так:
+После обычного `git clone` папок с весами не будет. Для V2 нужно получить export
+`e5_macro_v2_30k_export.zip` и разместить четыре файла так:
 
 ```text
-solution/models/e5_small_macro_v2_30k/
+solutions/e5_small_v2/models/e5_small_macro_v2_30k/
 ├── config.json
 ├── model.safetensors
 ├── tokenizer.json
@@ -376,7 +495,17 @@ b7263e2c9f39cf73bfd1217c91ef613b9cbc9529fa95a062784215d4c568d92c
 Эти файлы можно также скопировать из локального
 `models/e5_small_macro_v2/hf_export_30k/`.
 
-### 8.3. Подготовить данные
+Для V3 нужно распаковать `e5_v3_hybrid_export.zip` в структуру:
+
+```text
+solutions/e5_small_v3_hybrid/models/e5_small_v3_hybrid/
+├── base_model/
+├── fashion_specialist/
+├── tokenizer/
+└── routing.json
+```
+
+### 9.3. Подготовить данные
 
 Минимальные схемы:
 
@@ -390,31 +519,30 @@ matches parquet: id1, id2
 - `data/items_test.parquet`: 199 товаров;
 - `data/matches_test.parquet`: 100 пар.
 
-### 8.4. Запустить
+### 9.4. Запустить
 
-Из корня репозитория:
+V3 из корня репозитория:
 
 ```bash
-python -u solution/run.py \
+python -u solutions/e5_small_v3_hybrid/run.py \
   --items_path data/items_test.parquet \
   --matches_path data/matches_test.parquet \
-  --output_path /tmp/e5_predictions.csv
+  --output_path /tmp/e5_v3_predictions.csv
 ```
 
-Из `solution/`:
+V2 fallback:
 
 ```bash
-cd solution
-python -u run.py \
-  --items_path ../data/items_test.parquet \
-  --matches_path ../data/matches_test.parquet \
-  --output_path /tmp/e5_predictions.csv
+python -u solutions/e5_small_v2/run.py \
+  --items_path data/items_test.parquet \
+  --matches_path data/matches_test.parquet \
+  --output_path /tmp/e5_v2_predictions.csv
 ```
 
-## 9. Что проверено перед первой отправкой
+## 10. Что проверено в готовых solution
 
-Smoke-test запускался трижды: из build-директории, из распакованного ZIP и из
-финальной папки `solution/` в репозитории.
+V2 ранее проверялся из build-директории, распакованного ZIP и финальной папки в
+репозитории. V3 отдельно проверен на тех же тестовых parquet.
 
 Проверки:
 
@@ -424,23 +552,28 @@ Smoke-test запускался трижды: из build-директории, �
 - порядок `id1/id2` совпадает с `matches_test.parquet`;
 - NaN и Inf отсутствуют;
 - predictions находятся в `[0, 1]`;
-- повторный запуск из распакованного ZIP дал идентичный CSV;
 - модель и tokenizer загрузились без обращения к сети.
 
-Локальный benchmark на доступном CPU:
+Локальные benchmark на доступном CPU:
 
-| Этап | Результат |
+| Решение / этап | Результат |
 |---|---:|
-| Полный cold start | около `4.05 s` |
-| Чистый inference 100 пар | около `2.27 s` |
-| Средняя скорость | около `44 pair/s` |
+| V2 cold start | около `4.05 s` |
+| V2 inference | около `44 pair/s` |
+| V3 cold start, две модели | около `4.38 s` |
+| V3 base inference | около `43.8 pair/s` |
+| V3 specialist inference | около `30.3 pair/s` |
+
+В V3 smoke-test 84 пары ушли в base и 16 в specialist. На base-строках
+максимальное расхождение с отдельным V2 solution было меньше `4e-8`; все 16
+specialist-строк получили новые предсказания.
 
 Это CPU smoke benchmark, а не оценка H100. Реальный полный test и скорость в
 контейнере соревнования ещё нужно измерить по логам первой отправки.
 
-## 10. Готовый submission ZIP
+## 11. Готовые submission ZIP
 
-Локальный файл:
+### V2
 
 ```text
 e5_small_macro_v2_30k_submission.zip
@@ -470,7 +603,22 @@ models/e5_small_macro_v2_30k/tokenizer_config.json
 были настроены. Для командного резервного хранения лучше загрузить ZIP как
 GitHub Release asset, Kaggle Dataset или в другое хранилище больших файлов.
 
-## 11. Локальные модельные артефакты
+### V3 Hybrid
+
+```text
+e5_small_macro_v3_hybrid_submission.zip
+```
+
+- размер: `717517727` bytes (около 684 MiB);
+- SHA-256:
+  `d81b1a03fddf2fa7b75dc6554fd2b12c5a0cf9a5ee915bd7e0c85050aec652f8`;
+- ZIP прошёл полную CRC-проверку;
+- внутри 12 обязательных файлов без wrapper-директории: entry point, V3 code,
+  routing, tokenizer, base model и fashion specialist.
+
+Оба ZIP игнорируются Git.
+
+## 12. Локальные модельные артефакты
 
 ### Fine-tuned checkpoint
 
@@ -499,14 +647,51 @@ models/e5_small_macro_v2/hf_export_30k/
 ```
 
 Это канонический источник четырёх файлов, скопированных в
-`solution/models/e5_small_macro_v2_30k/`.
+`solutions/e5_small_v2/models/e5_small_macro_v2_30k/`.
 
 Архив `e5_macro_v2_best_repacked.zip` был проверен как дубликат содержимого
 checkpoint: 207 внутренних файлов совпали по именам, размерам и CRC. Повторно в
 репозиторий он не переносился. Bundle `results.zip` также состоял в основном из
 уже сохранённых копий export/checkpoint/metrics.
 
-## 12. Ноутбуки
+### V3 best specialist checkpoint
+
+```text
+models/e5_small_macro_v3/checkpoints/e5_v3_best_specialist.pt
+```
+
+- best step: 4 000;
+- размер: `470702271` bytes;
+- SHA-256:
+  `0546814b8950782e7116248ac557ed67ebd04098e5c0f9362aa5d9a8bbca7ada`.
+
+### V3 resume checkpoint
+
+```text
+models/e5_small_macro_v3/checkpoints/e5_v3_resume.pt
+```
+
+- содержит model, optimizer, scheduler, scaler и состояние полного run;
+- размер: `1412119762` bytes;
+- SHA-256:
+  `0ae0d6a752893faa8bbd4131e03b1d730ffe2fc1a5618887d433aab62fcededf`.
+
+### V3 hybrid export
+
+```text
+models/e5_small_macro_v3/exports/e5_v3_hybrid_export.zip
+```
+
+- содержит V2 base model, V3 fashion specialist, tokenizer, routing и метрики;
+- размер: `718451718` bytes;
+- SHA-256:
+  `ea84f56b9b0f6bfbabed5d3dfbe75292992234c8beffbd5f9141614c392d99a8`.
+
+Новый `results (1).zip` прошёл CRC-проверку. Его V2 repacked checkpoint совпал
+с уже сохранённым V2 по всем 207 внутренним файлам. Распакованный hybrid export
+совпал с вложенным export ZIP по всем 10 файлам, поэтому дубликаты не копируются.
+
+## 13. Ноутбуки
 
 ### `notebooks/e5_small_macro_llm_stageA_v2.ipynb`
 
@@ -542,7 +727,24 @@ Notebook восстановления и проверки. В нём наход�
 Именно второй notebook подтвердил, что checkpoint восстановлен корректно и дал
 Full LLM Macro PR-AUC `0.786482334`.
 
-## 13. Папка `experiments/`
+### `notebooks/e5_small_macro_v3_fashion_specialist_hybrid.ipynb`
+
+Полный V3 notebook. В нём находятся:
+
+- восстановление и контроль V2 checkpoint;
+- тот же group split, что в V2;
+- balanced fashion candidate pool;
+- извлечение variant-сигналов;
+- base predictions и hard-example mining;
+- mined train на 600 000 пар;
+- specialist, инициализированный из V2 weights;
+- частые hybrid validation и resume checkpoints;
+- загрузка best step 4000;
+- full hybrid validation;
+- rough LB signal;
+- export base + specialist + tokenizer + routing.
+
+## 14. Папка `experiments/`
 
 `experiments/e5_small_macro_v2/` хранит небольшие результаты, которые можно
 безопасно держать в Git:
@@ -557,12 +759,23 @@ Full LLM Macro PR-AUC `0.786482334`.
 Manual metric используется только как диагностика. Решение о submission
 принималось по LLM group holdout и проверке воспроизводимости checkpoint.
 
-## 14. Что хранится на GitHub, а что нет
+`experiments/e5_small_macro_v3/` хранит историю нового fashion specialist:
+
+- `RUN_SUMMARY.md` — полный проверенный отчёт;
+- `KAGGLE_RUN_SUMMARY.md` — исходный summary из Kaggle output;
+- `metrics.json` — точные V3 параметры и метрики;
+- `routing.json` — категории base/specialist и variant config;
+- `fashion_comparison.csv` — V2/V3 comparison для четырёх категорий;
+- `hybrid_full_by_category.csv` — итоговый hybrid по 20 категориям;
+- `huggingface_source.json` — ревизия исходного backbone.
+- `artifacts.json` — provenance, размеры, SHA-256 и проверки дублей.
+
+## 15. Что хранится на GitHub, а что нет
 
 ### Хранится на GitHub
 
-- Python-код baseline и E5 solution;
-- `metadata.json` для обоих pipeline;
+- Python-код baseline и обоих E5 solution;
+- `metadata.json` для baseline, V2 и V3;
 - небольшой baseline Logistic Regression classifier;
 - training/restore notebooks;
 - отчёты, JSON с метриками и category CSV;
@@ -574,7 +787,7 @@ Manual metric используется только как диагностик�
 - `data/`, `*.parquet`;
 - `.venv/`;
 - `models/*`, кроме `models/README.md`;
-- `solution/models/`;
+- `solutions/*/models/`;
 - `*.safetensors`, `*.pt`, `*.pth`, `*.bin`, `*.onnx`;
 - `*.zip`;
 - кэши и generated outputs.
@@ -587,11 +800,13 @@ Manual metric используется только как диагностик�
 ```bash
 git status --short
 git status --ignored --short
-git check-ignore -v solution/models/e5_small_macro_v2_30k/model.safetensors
+git check-ignore -v solutions/e5_small_v2/models/e5_small_macro_v2_30k/model.safetensors
+git check-ignore -v solutions/e5_small_v3_hybrid/models/e5_small_v3_hybrid/base_model/model.safetensors
 git check-ignore -v e5_small_macro_v2_30k_submission.zip
+git check-ignore -v e5_small_macro_v3_hybrid_submission.zip
 ```
 
-## 15. История ветки
+## 16. История ветки
 
 Ветка `minicooper1` основана на `main` с исходным baseline.
 
@@ -607,52 +822,45 @@ git check-ignore -v e5_small_macro_v2_30k_submission.zip
   проектную структуру.
 - `2a292e9` добавил проверенный E5 offline submission pipeline.
 
-## 16. Что ещё не сделано
+## 17. Что ещё не сделано
 
-1. Не выполнена первая leaderboard-отправка E5 ZIP либо её score ещё не записан.
-2. Full-size inference не измерен в реальном контейнере соревнования/H100.
-3. Большие E5-артефакты пока не имеют командного удалённого backup.
+1. V3 ещё не прошёл full-size inference в контейнере/H100.
+2. V3 submission ZIP ещё не отправлен на leaderboard; Public LB неизвестен.
+3. Крупные V2/V3-артефакты пока не имеют командного удалённого backup.
 4. Не добавлены три ранних notebook, если они сохранились:
    - `ozon_ecup_crossencoder_v1.ipynb`;
    - `ce_tiny_2ep.ipynb`;
    - `ozon_ecup_catboost_v1.ipynb`.
 5. Нет отдельного `docs/FOR_MISHA.md`, если такая персональная памятка всё ещё
    нужна.
-6. Не выполнен следующий fashion-specific эксперимент с исправленными exact
-   category names.
 
-Важно: раздел «Нужно подготовить позже» в `docs/PENDING_FILES.md`, где ещё
-предлагалось собрать E5 `solution/`, теперь устарел. E5 solution уже собран,
-протестирован и находится в `solution/`. Актуальный список незавершённых задач —
-в этом разделе.
+Проверенный V2 в `solutions/e5_small_v2/` уже дал Public LB `0.4838757641` и
+остаётся production fallback независимо от V3.
 
-## 17. Рекомендуемые следующие действия команды
+## 18. Рекомендуемые следующие действия команды
 
-1. Отправить `e5_small_macro_v2_30k_submission.zip` как первый E5 submission.
-2. Сохранить execution time, сообщения контейнера и leaderboard score.
-3. Записать score в `README.md`, `RUN_SUMMARY.md` и этот handoff.
-4. Загрузить ZIP/export/checkpoint в командное хранилище больших файлов.
-5. После первого LB решить, делать ли:
-   - fashion continuation;
-   - отдельную fashion-модель/ensemble;
-   - исправленное category weighting;
-   - калибровку или blending с другим независимым решением.
-6. Не менять preprocessing отдельно от модели без повторной валидации: текущие
-   веса обучены именно с V2 и `MAX_LEN=192`.
+1. Выполнить V3 submit, сохранить execution logs и leaderboard score.
+2. Сравнить V3 LB с V2 Public LB `0.4838757641` и rough signal `0.486152`.
+3. Выполнить full-size benchmark V3 в реальном контейнере.
+4. Загрузить V3 export/checkpoints в командное хранилище больших файлов.
+5. После LB решить, продолжать ли specialist или делать blending/ensemble.
 
-## 18. Самый короткий маршрут для нового участника
+## 19. Самый короткий маршрут для нового участника
 
 Если времени мало:
 
 1. Прочитать этот файл.
-2. Посмотреть `experiments/e5_small_macro_v2/RUN_SUMMARY.md`.
-3. Для кода submission открыть `solution/run.py`,
-   `solution/src/preprocessing.py`, `solution/src/pipeline.py`.
-4. Получить четыре model/tokenizer файла и положить их в
-   `solution/models/e5_small_macro_v2_30k/`.
-5. Запустить smoke-test на `data/items_test.parquet` и
+2. Посмотреть V2 и V3 отчёты в `experiments/`.
+3. Открыть индекс `solutions/README.md` и выбрать V2 fallback или V3 hybrid.
+4. Для нового решения изучить `solutions/e5_small_v3_hybrid/run.py` и `src/`.
+5. Восстановить локальную модель по README выбранного solution.
+6. Запустить smoke-test на `data/items_test.parquet` и
    `data/matches_test.parquet`.
-6. Для обучения/анализа открыть два notebook в `notebooks/`.
+7. Для истории обучения V3 открыть
+   `notebooks/e5_small_macro_v3_fashion_specialist_hybrid.ipynb` и
+   `experiments/e5_small_macro_v3/RUN_SUMMARY.md`.
 
-Главный вывод: **готовое текущее решение — E5-small в `solution/`; корневой
-pipeline — сохранённый baseline.**
+Главный вывод: **V2 и V3 — два независимых готовых solution в `solutions/`.
+V2 уже оценён на leaderboard и остаётся fallback; V3 лучше на локальном
+holdout, прошёл smoke-test и готов к первой отправке; корневой pipeline —
+сохранённый baseline.**
