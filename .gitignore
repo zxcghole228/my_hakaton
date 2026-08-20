@@ -55,8 +55,10 @@ wandb/
 mlruns/
 checkpoints/
 
-# Large model files. Restore the bundled baseline model from the organizer archive.
-models/
+# Large model files. Keep only the inventory in Git.
+models/*
+!models/README.md
+solution/models/
 *.ckpt
 *.pt
 *.pth

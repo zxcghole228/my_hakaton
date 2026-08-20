@@ -1,0 +1,23 @@
+{
+  "experiment": "e5-small_macro-llm_stageA_v2_restore30k",
+  "model_name": "intfloat/multilingual-e5-small",
+  "checkpoint_step": 30000,
+  "train_fast_macro_recorded": 0.7863788901130114,
+  "restored_fast_macro": 0.7863788901130114,
+  "restored_fast_delta": 0.0,
+  "full_llm_group_holdout_macro": 0.7864823339791696,
+  "manual_group_holdout_macro_diagnostic": 0.6770238851603795,
+  "fashion_macro": 0.4844321981475632,
+  "non_fashion_macro": 0.8619948679370711,
+  "max_len": 192,
+  "max_attr_chars": 460,
+  "llm_val_pairs": 191555,
+  "manual_val_pairs": 72948,
+  "real_fashion_categories": [
+    "Галантерея и аксессуары",
+    "Обувь",
+    "Одежда",
+    "Ювелирные изделия"
+  ],
+  "note": "Checkpoint trained on LLM stage-A only. Manual metric is diagnostic only. Original V2 fashion extra boost missed exact names for Galantereya i aksessuary / Yuvelirnye izdeliya, but general macro category weighting remained active."
+}

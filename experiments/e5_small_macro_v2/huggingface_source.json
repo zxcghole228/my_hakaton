@@ -1,0 +1,12 @@
+{
+  "repo_id": "intfloat/multilingual-e5-small",
+  "repo_type": "model",
+  "commit_hash": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "source_metadata_file": "__huggingface_repos__.json",
+  "file_paths": [
+    "tokenizer.json",
+    "config.json",
+    "tokenizer_config.json",
+    "special_tokens_map.json"
+  ]
+}
