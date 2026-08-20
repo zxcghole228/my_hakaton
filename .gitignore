@@ -58,6 +58,7 @@ checkpoints/
 # Large model files. Keep only the inventory in Git.
 models/*
 !models/README.md
+solution/models/
 *.ckpt
 *.pt
 *.pth

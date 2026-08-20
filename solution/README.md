@@ -1,24 +1,31 @@
-# Solution
+# E5-small submission
 
-Здесь будет находиться итоговый submission pipeline.
+Рабочий submission для E-CUP 2026 Ozon matching.
 
-Сейчас рабочий CrossEncoder baseline намеренно оставлен в корне репозитория:
+- Backbone: `intfloat/multilingual-e5-small`
+- Checkpoint: step 30000
+- Preprocessing: V2
+- `MAX_LEN`: 192
+- Full LLM group holdout Macro PR-AUC: 0.786482
 
-- `run.py`
-- `src/utils.py`
-- `metadata.json`
-- `baseline_logreg_l12.joblib`
+Запуск из этой директории:
 
-Это сохраняет исходную конфигурацию `python -u run.py` и относительные пути до локальных весов.
-
-Экспорт E5-small уже сохранён локально и задокументирован, но полноценный production pipeline для него ещё не собран. Когда он будет готов, целевая структура будет такой:
-
-```text
-solution/
-├── run.py
-├── preprocessing.py
-├── model.py
-└── metadata.json
+```bash
+python -u run.py \
+  --items_path ../data/items_test.parquet \
+  --matches_path ../data/matches_test.parquet \
+  --output_path predictions.csv
 ```
 
-Перенос baseline или замена корневой точки входа должны выполняться только вместе с проверкой запуска на тестовых данных.
+Модель и tokenizer загружаются только из локального каталога
+`models/e5_small_macro_v2_30k/`; обращений к Hugging Face во время
+inference нет.
+
+Готовый архив для отправки находится в корне репозитория:
+
+```text
+e5_small_macro_v2_30k_submission.zip
+```
+
+Архив намеренно игнорируется Git. Локальная модель внутри `solution/models/`
+также игнорируется, чтобы веса и tokenizer не попали в обычный коммит.
