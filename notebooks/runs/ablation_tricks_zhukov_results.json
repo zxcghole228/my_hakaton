@@ -1,0 +1,34 @@
+[
+  {
+    "name": "tiny_anchor",
+    "confw": false,
+    "catbal": false,
+    "fast_macro": 0.5666,
+    "full_macro": 0.5662,
+    "minutes": 46.8
+  },
+  {
+    "name": "tiny_confw",
+    "confw": true,
+    "catbal": false,
+    "fast_macro": 0.5629,
+    "full_macro": 0.5613,
+    "minutes": 47.3
+  },
+  {
+    "name": "tiny_catbal",
+    "confw": false,
+    "catbal": true,
+    "fast_macro": 0.5467,
+    "full_macro": 0.5408,
+    "minutes": 46.8
+  },
+  {
+    "name": "tiny_confw_catbal",
+    "confw": true,
+    "catbal": true,
+    "fast_macro": 0.5758,
+    "full_macro": 0.5705,
+    "minutes": 45.6
+  }
+]

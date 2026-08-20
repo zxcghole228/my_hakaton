@@ -116,3 +116,17 @@ e5_small_macro_v2_30k_submission.zip
 
 Финальный рецепт большого прогона: v1-текст + seq 320 + swap + confidence
 weighting + 2 эпохи stage-A (soft labels) + best-checkpoint по balanced fast-val.
+
+## Абляция трюков обучения Жукова (полигон, tiny, 1ep)
+
+| Слот | full_macro | дельта к anchor |
+|---|---:|---:|
+| `tiny_anchor` | 0.5662 | — |
+| `tiny_confw` | 0.5613 | -0.0049 |
+| `tiny_catbal` | 0.5408 | -0.0254 |
+| `tiny_confw_catbal` | **0.5705** | **+0.0043** |
+
+Комбинация формально прошла порог `+0.003`, однако sanity-check anchor
+`0.70–0.72` не выполнен, поэтому вывод предварительный и требует контрольного
+повтора с одинаковыми seed. Подробности и артефакты:
+`../notebooks/runs/ablation_tricks_zhukov_results.md`.
