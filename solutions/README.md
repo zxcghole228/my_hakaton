@@ -1,32 +1,36 @@
 # Готовые решения
 
-В этой папке независимо сохранены обе рабочие версии E5 submission. Они не
-перезаписывают друг друга и имеют собственные `run.py`, `metadata.json`, код
-preprocessing/inference и локальную папку `models/`.
+Каждое решение живёт в собственной папке и не импортирует код другого
+решения. Это позволяет отдельно упаковывать, проверять и откатывать любую
+версию.
 
-## `e5_small_v2/`
+## Реестр
 
-Проверенный production fallback, уже отправленный на leaderboard.
+| Папка | Назначение | Статус |
+|---|---|---|
+| `cross_encoder_baseline/` | исходный CrossEncoder + Logistic Regression | baseline |
+| `e5_small_v2/` | E5-small checkpoint 30k | fallback, Public LB `0.4838757641` |
+| `e5_small_v3_hybrid/` | V2 base + fashion specialist | Public LB `0.4848439268` |
+| `e5_small_v4_structured_ensemble/` | V3 + structured CatBoost rank blend | candidate |
 
-- checkpoint: E5-small step 30 000;
-- preprocessing V2, `MAX_LEN=192`;
-- Full LLM Macro PR-AUC: `0.786482334`;
-- Public LB: `0.4838757641`;
-- локальный архив: `e5_small_macro_v2_30k_submission.zip` в корне репозитория.
+## Обязательная структура решения
 
-## `e5_small_v3_hybrid/`
+```text
+solutions/<solution_name>/
+├── README.md       # идея, метрики, запуск, состав локальных файлов
+├── metadata.json   # образ и entry point платформы
+├── run.py          # единая CLI-точка входа
+├── src/            # preprocessing и inference
+└── models/         # runtime-веса; local, ignored
+```
 
-Новый hybrid solution: V2 base плюс V3 fashion specialist.
+Дополнительный небольшой classifier можно хранить рядом с `run.py`, только
+если он действительно является частью исходного baseline и явно разрешён в
+`.gitignore`. Большие веса всегда остаются в `models/`.
 
-- specialist checkpoint: step 4 000;
-- Hybrid Full LLM Macro PR-AUC: `0.790182347`;
-- specialist используется для `Обувь`, `Одежда` и `Ювелирные изделия`;
-- base используется для остальных категорий, включая
-  `Галантерея и аксессуары`;
-- локальный архив: `e5_small_macro_v3_hybrid_submission.zip` в корне
-  репозитория.
+## Интерфейс
 
-Оба entry point принимают одинаковые аргументы соревнования:
+Все entry point принимают:
 
 ```text
 --items_path
@@ -34,6 +38,13 @@ preprocessing/inference и локальную папку `models/`.
 --output_path
 ```
 
-Веса, tokenizer и ZIP-архивы игнорируются Git. После обычного клонирования их
-нужно восстановить по инструкциям в README выбранного решения и
-`models/README.md`.
+Запуск выполняется из корня репозитория:
+
+```bash
+python -u solutions/<solution_name>/run.py \
+  --items_path data/items_test.parquet \
+  --matches_path data/matches_test.parquet \
+  --output_path data/predictions.csv
+```
+
+Готовые архивы лежат локально в `artifacts/submissions/`. Они не коммитятся.

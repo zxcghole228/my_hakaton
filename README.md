@@ -1,95 +1,63 @@
 # E-CUP 2026: матчинг товаров Ozon
 
-Рабочий репозиторий для baseline, экспериментов и итогового решения задачи product matching.
+Рабочий репозиторий команды для baseline, NLP-экспериментов и независимых
+submission pipelines задачи product matching.
 
-## Структура
+Подробный handoff, полное дерево и правила добавления новых решений находятся
+в [`FOR_TEAMMATES.md`](FOR_TEAMMATES.md).
 
-- `run.py` — текущая точка входа исходного CrossEncoder baseline.
-- `src/` — код baseline-пайплайна.
-- `metadata.json` — конфигурация запуска baseline в среде организаторов.
-- `baseline_logreg_l12.joblib` — компактный классификатор baseline.
-- `notebooks/` — воспроизводимые ноутбуки обучения, восстановления и анализа.
-- `experiments/` — метрики, таблицы по категориям и краткие отчёты без весов моделей.
-- `solutions/e5_small_v2/` — проверенный offline submission pipeline V2.
-- `solutions/e5_small_v3_hybrid/` — новый offline hybrid pipeline V3.
-- `models/` — локальные checkpoint и экспорты; в Git попадает только `models/README.md`.
-- `data/` — локальные данные соревнования и результаты; в Git не попадают.
-- `docs/` — проектные заметки и список ещё не добавленных материалов.
+## Навигация
 
-## Текущий baseline
+| Каталог | Что хранится |
+|---|---|
+| `solutions/` | Самодостаточный код каждого baseline/solution |
+| `notebooks/` | Обучение, восстановление, анализ и export |
+| `experiments/` | Отчёты, конфигурации, метрики и небольшие таблицы |
+| `models/` | Локальные training checkpoints и exports; в Git только README |
+| `data/` | Локальные входные данные и predictions; в Git только README |
+| `artifacts/` | Submission ZIP, распакованные builds и исходные bundles |
+| `docs/` | Командные заметки и список незакрытых материалов |
 
-Исходный baseline ожидает веса CrossEncoder в:
+Корень намеренно не содержит `run.py`, моделей и submission-архивов. Все точки
+входа находятся рядом со своим решением в `solutions/`.
+
+## Решения
+
+| Решение | Статус | Основной результат |
+|---|---|---:|
+| `cross_encoder_baseline` | baseline организаторов | контрольная точка |
+| `e5_small_v2` | проверенный fallback | Public LB `0.4838757641` |
+| `e5_small_v3_hybrid` | проверено на leaderboard | Public LB `0.4848439268` |
+| `e5_small_v4_structured_ensemble` | submission candidate | offline eval `0.789531` |
+
+V4 объединяет V3 E5 scores и structured CatBoost через category-wise
+percentile-rank blend с весами `0.90 / 0.10`. Его leaderboard score пока не
+зафиксирован.
+
+## Пример запуска
+
+Все решения принимают единый интерфейс:
 
 ```text
-models/cross-encoder-ms-marco-MiniLM-L12-v2/
+--items_path
+--matches_path
+--output_path
 ```
 
-Пример локального запуска из корня репозитория:
+Например, запуск последнего кандидата из корня:
 
 ```bash
-python run.py \
+python -u solutions/e5_small_v4_structured_ensemble/run.py \
   --items_path data/items_test.parquet \
   --matches_path data/matches_test.parquet \
-  --output_path data/submit_test.csv
+  --output_path data/submit_v4.csv
 ```
 
-Baseline оставлен в корне, чтобы не нарушать его текущую конфигурацию запуска и
-относительные пути. Индекс готовых E5-решений находится в
-`solutions/README.md`.
+Для запуска нужны локальные веса в `models/` выбранного решения. Инструкции и
+состав модели описаны в README этого решения.
 
-## Последний эксперимент: E5-small V3 Fashion Specialist
+## Что не попадает в Git
 
-V3 продолжает обучение от V2 checkpoint и специализируется на четырёх
-fashion-категориях. В нём исправлены exact category names, добавлены
-variant-сигналы и hard-example mining.
-
-| Проверка | Macro PR-AUC |
-|---|---:|
-| V2 Full LLM group holdout | 0.786482 |
-| V3 Fashion specialist full | 0.504528 |
-| V3 Hybrid Full LLM group holdout | **0.790182** |
-| Delta V3 vs V2 | **+0.003700** |
-
-Public LB V2 submission: `0.4838757641`. Оба решения теперь сохранены отдельно:
-проверенный fallback находится в `solutions/e5_small_v2/`, а готовый V3 hybrid
-pipeline — в `solutions/e5_small_v3_hybrid/`. V3 прошёл локальный smoke-test;
-его leaderboard score пока не получен.
-
-Локальные архивы для отправки:
-
-- `e5_small_macro_v2_30k_submission.zip`;
-- `e5_small_macro_v3_hybrid_submission.zip`.
-
-Полный отчёт: `experiments/e5_small_macro_v3/RUN_SUMMARY.md`.
-
-## E5-small Macro LLM Stage-A V2
-
-Опорный V2-эксперимент использует `intfloat/multilingual-e5-small`, checkpoint шага 30 000 и длину входа 192.
-
-Ключевые результаты:
-
-| Валидация | Macro PR-AUC |
-|---|---:|
-| Fast LLM group holdout | 0.786379 |
-| Full LLM group holdout | 0.786482 |
-| Manual group holdout, diagnostic | 0.677024 |
-| Fashion subset | 0.484432 |
-| Non-fashion subset | 0.861995 |
-
-Полный отчёт и таблицы по категориям находятся в `experiments/e5_small_macro_v2/`.
-
-## Что хранится только локально
-
-В репозиторий не коммитятся:
-
-- веса и checkpoint моделей;
-- архивы;
-- `parquet`, Arrow и Feather datasets;
-- виртуальные окружения;
-- кэши, временные каталоги и generated outputs.
-
-Расположение и контрольные суммы локальных модельных артефактов записаны в `models/README.md`.
-
-## Следующие материалы
-
-Список файлов, которые ещё предстоит скачать или подготовить, находится в `docs/PENDING_FILES.md`.
+Git игнорирует datasets, веса, checkpoints, ZIP-архивы, predictions, кэши и
+виртуальные окружения. В репозитории остаются код, ноутбуки, документация,
+конфигурации и небольшие результаты экспериментов.

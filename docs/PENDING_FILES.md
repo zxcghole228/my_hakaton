@@ -1,30 +1,32 @@
-# Материалы, которые ещё нужно добавить
+# Незакрытые материалы и проверки
 
-## Нужно скачать
+## Ранние ноутбуки
 
-Если эти файлы сохранились в Kaggle или в истории проекта, положить их в `notebooks/`:
+Если файлы сохранились в Kaggle или истории проекта, положить их в
+`notebooks/`:
 
-- `ozon_ecup_crossencoder_v1.ipynb` — ранний CrossEncoder-эксперимент.
-- `ce_tiny_2ep.ipynb` — короткий CrossEncoder training run.
-- `ozon_ecup_catboost_v1.ipynb` — CatBoost baseline/experiment.
+- `ozon_ecup_crossencoder_v1.ipynb` — ранний CrossEncoder-эксперимент;
+- `ce_tiny_2ep.ipynb` — короткий CrossEncoder training run;
+- `ozon_ecup_catboost_v1.ipynb` — ранний CatBoost baseline.
 
-Если существует отдельная командная памятка, положить её сюда:
+Если существует отдельная командная памятка, положить её в
+`docs/FOR_MISHA.md`.
 
-- `docs/FOR_MISHA.md` — инструкция по воспроизведению и передаче решения.
+## V4 Structured Ensemble
 
-## Осталось после сборки V3 solution
+V4 оформлен как отдельный pipeline в
+`solutions/e5_small_v4_structured_ensemble/`. Код и компактные результаты
+эксперимента сохранены, локальный submission archive находится в
+`artifacts/submissions/e5_small_v4_structured_ensemble.zip`.
 
-V3 Fashion Specialist обучен, экспортирован и собран в отдельный проверенный
-pipeline `solutions/e5_small_v3_hybrid/`. Чистый локальный ZIP также готов.
 Осталось:
 
 - выполнить full-size benchmark в контейнере соревнования/H100;
-- отправить `e5_small_macro_v3_hybrid_submission.zip`;
-- записать V3 leaderboard score и execution logs;
-- сравнить Public LB V3 с V2 (`0.4838757641`).
+- отправить V4 archive;
+- записать leaderboard score и execution logs;
+- сравнить Public LB V4 с V3 (`0.4848439268`) и V2 (`0.4838757641`).
 
-Также нужно сделать командный удалённый backup крупных V3 checkpoint/export,
-которые сейчас хранятся только локально и игнорируются Git.
+## Backup
 
-Проверенный V2 сохранён независимо в `solutions/e5_small_v2/` и остаётся
-production fallback независимо от дальнейших изменений V3.
+Нужен командный удалённый backup крупных checkpoints, exports и submission
+archives. Сейчас они намеренно игнорируются Git и хранятся только локально.

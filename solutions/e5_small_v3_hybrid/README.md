@@ -13,6 +13,7 @@ base и использует отдельно обученный fashion special
 - V2 Full LLM Macro PR-AUC: `0.786482334`;
 - V3 Hybrid Full LLM Macro PR-AUC: `0.790182347`;
 - delta: `+0.003700013`.
+- Public LB: `0.4848439268`.
 
 Routing:
 
@@ -84,10 +85,10 @@ CPU smoke benchmark:
 - specialist inference: `30.3 pair/s`;
 - end-to-end на 100 парах: около `22.8 pair/s`, включая загрузку двух моделей.
 
-Готовый локальный архив находится в корне репозитория:
+Готовый локальный архив находится в каталоге артефактов:
 
 ```text
-e5_small_macro_v3_hybrid_submission.zip
+artifacts/submissions/e5_small_macro_v3_hybrid_submission.zip
 ```
 
 - размер: `717517727` bytes (около 684 MiB);
@@ -97,3 +98,5 @@ e5_small_macro_v3_hybrid_submission.zip
 - ZIP прошёл полную CRC-проверку.
 
 V2 fallback сохранён независимо в `../e5_small_v2/`.
+Следующая V4-версия сохранена независимо в
+`../e5_small_v4_structured_ensemble/`.

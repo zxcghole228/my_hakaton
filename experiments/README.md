@@ -1,5 +1,22 @@
-# Experiments
+# Эксперименты
 
-Здесь хранятся небольшие воспроизводимые результаты экспериментов: краткие отчёты, конфигурации, метрики и таблицы по категориям.
+Здесь хранятся небольшие воспроизводимые результаты: `RUN_SUMMARY.md`,
+конфигурации, агрегированные метрики и таблицы по категориям.
 
-Checkpoint, веса, архивы, datasets и generated outputs сюда не добавляются. Их локальное расположение документируется в `models/README.md`.
+```text
+experiments/
+├── e5_small_macro_v2/
+├── e5_small_macro_v3/
+└── e5_small_v4_structured_ensemble/
+```
+
+Checkpoint, веса, datasets и generated predictions сюда не добавляются.
+Training artifacts размещаются локально в `models/`, а исходные bundles — в
+`artifacts/experiment_exports/`.
+
+Для нового эксперимента создайте отдельную папку и как минимум сохраните:
+
+- цель и гипотезу;
+- конфигурацию train/validation split;
+- основные метрики и решение по результату;
+- ссылки на notebook, model artifact и основанное на нём solution.

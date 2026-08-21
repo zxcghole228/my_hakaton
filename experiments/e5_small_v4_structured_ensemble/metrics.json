@@ -1,0 +1,16 @@
+{
+  "experiment": "V4 day structured lexical CatBoost + V3 rank ensemble",
+  "decision": "SUBMISSION_CANDIDATE",
+  "train_pairs": 1000000,
+  "train_per_category_cap": 50000,
+  "model_kind": "CatBoostClassifier/CrossEntropy",
+  "v2_public_lb": 0.4838757641,
+  "v3_public_lb": 0.4848439268269547,
+  "v3_combined_holdout_macro": 0.7901821562953725,
+  "e5_v3_eval_macro": 0.7865707082020099,
+  "structured_eval_macro": 0.5861656570743339,
+  "global_blend_eval_macro": 0.7895307294915902,
+  "category_blend_eval_macro": 0.7895361184808436,
+  "delta_vs_v3_eval": 0.00296541027883368,
+  "global_w_e5": 0.9
+}
