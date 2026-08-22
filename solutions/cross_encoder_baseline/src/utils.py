@@ -1,6 +1,16 @@
 import os
-os.environ.setdefault("TRITON_CACHE_DIR", "/dev/shm/.triton_cache")
-os.environ.setdefault("TORCHINDUCTOR_CACHE_DIR", "/dev/shm/.inductor_cache")
+import sys
+import tempfile
+from pathlib import Path
+
+
+if sys.platform.startswith("linux") and Path("/dev/shm").is_dir():
+    _cache_root = Path("/dev/shm")
+else:
+    _cache_root = Path(tempfile.gettempdir())
+
+os.environ.setdefault("TRITON_CACHE_DIR", str(_cache_root / ".triton_cache"))
+os.environ.setdefault("TORCHINDUCTOR_CACHE_DIR", str(_cache_root / ".inductor_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "true")
 os.environ.setdefault("OMP_NUM_THREADS", "32")
 os.environ.setdefault("MKL_NUM_THREADS", "32")
@@ -15,7 +25,6 @@ from tqdm import tqdm
 from typing import List, Tuple, Optional
 
 import torch
-from sentence_transformers import CrossEncoder
 from transformers import AutoModel, AutoTokenizer, logging as hf_logging
 
 from sklearn.preprocessing import StandardScaler
@@ -393,4 +402,3 @@ def predict_pipeline(data_path, match_path, model_path, logreg_path, output_csv_
 
     print("\n=== Prediction Pipeline Complete ===")
     return results_df
-

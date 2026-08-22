@@ -9,23 +9,23 @@
 - Full LLM group holdout Macro PR-AUC: 0.786482
 - Public LB: 0.4838757641
 
-Запуск из этой директории:
+Запуск из корня репозитория:
 
 ```bash
-python -u run.py \
-  --items_path ../../data/items_test.parquet \
-  --matches_path ../../data/matches_test.parquet \
-  --output_path predictions.csv
+python -u solutions/e5_small_v2/run.py \
+  --items_path data/items_test.parquet \
+  --matches_path data/matches_test.parquet \
+  --output_path data/submit_v2.csv
 ```
 
 Модель и tokenizer загружаются только из локального каталога
 `models/e5_small_macro_v2_30k/`; обращений к Hugging Face во время
 inference нет.
 
-Готовый архив для отправки находится в корне репозитория:
+Готовый архив для отправки находится в каталоге артефактов:
 
 ```text
-e5_small_macro_v2_30k_submission.zip
+artifacts/submissions/e5_small_macro_v2_30k_submission.zip
 ```
 
 Архив намеренно игнорируется Git. Локальная модель внутри

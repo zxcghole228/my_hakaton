@@ -2,9 +2,9 @@
 
 ## Статус
 
-Обучение и полная локальная валидация завершены. Модели, tokenizer и routing
-экспортированы. Production submission pipeline для одновременной загрузки base
-и specialist ещё не собран: текущий `solution/` продолжает содержать V2.
+Обучение, полная локальная валидация и сборка submission завершены. Отдельный
+pipeline находится в `solutions/e5_small_v3_hybrid/`; V2 сохранён независимо.
+V3 отправлен на leaderboard и получил Public LB `0.4848439268`.
 
 ## Отправная точка V2
 
@@ -65,6 +65,8 @@ Group split, LLM validation и V2 preprocessing сохранены совмес�
 | **V3 hybrid full LLM** | **`0.790182347`** |
 | **Delta V3 vs V2** | **`+0.003700013`** |
 
+Public LB V3: **`0.4848439268`**, прирост к V2: **`+0.0009681627`**.
+
 Грубый LB-сигнал через историческое отношение V2 public LB к local metric:
 `0.486152`. Это только эвристика, а не предсказание leaderboard score.
 
@@ -118,12 +120,9 @@ models/e5_small_macro_v3/
 
 Они документированы в `models/README.md` и игнорируются Git.
 
-## Следующий технический шаг
+## Текущее продолжение
 
-Собрать отдельный V3 submission pipeline, который:
-
-1. строит V2 text и variant-сигналы точно как в notebook;
-2. загружает base и fashion specialist offline;
-3. маршрутизирует пары по категории первого товара через `routing.json`;
-4. сохраняет все строки в формате `id1,id2,predict`;
-5. проходит smoke-test и full-size benchmark до замены текущего V2 `solution/`.
+V3 pipeline собран, прошёл smoke-test и сохранён как самостоятельное решение.
+Следующий эксперимент — V4 structured ensemble — находится в
+`experiments/e5_small_v4_structured_ensemble/` и
+`solutions/e5_small_v4_structured_ensemble/`.

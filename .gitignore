@@ -39,16 +39,18 @@ dist/
 tmp/
 temp/
 
-# Competition data and generated submissions
-data/
-datasets/
-submissions/
+# Competition data. Keep only the directory documentation in Git.
+/data/*
+!/data/README.md
+/datasets/
 *.parquet
 *.feather
 *.arrow
 
-# Experiment tracking and generated artifacts
-artifacts/
+# Generated artifacts. Keep only the directory documentation in Git.
+/artifacts/*
+!/artifacts/README.md
+/submissions/
 outputs/
 runs/
 wandb/
@@ -67,7 +69,8 @@ solutions/*/models/
 *.safetensors
 *.msgpack
 *.joblib
-!baseline_logreg_l12.joblib
+!solutions/cross_encoder_baseline/baseline_logreg_l12.joblib
+*.cbm
 
 # Local archives
 *.zip
