@@ -1,0 +1,22 @@
+{
+  "experiment": "V6.2 E5 Stage-B with selective BGE-M3 reranking",
+  "top_fraction": 0.1,
+  "e5_weight": 0.8,
+  "bge_weight": 0.2,
+  "e5_swap_tta": true,
+  "bge_swap_tta": true,
+  "manual_pairs": 72948,
+  "manual_tune_e5": 0.774751154830206,
+  "manual_tune_selective": 0.7752237547016158,
+  "manual_eval_e5": 0.7667150912382683,
+  "manual_eval_selective": 0.7689545880839843,
+  "manual_full_e5": 0.7701124939243256,
+  "manual_full_selective": 0.7714568793458431,
+  "previous_public_lb": 0.5244670740165974,
+  "public_lb": 0.5290960422265529,
+  "public_lb_delta": 0.0046289682099555085,
+  "public_lb_relative_gain": 0.008826041594002942,
+  "top30_manual_full": 0.7718637349016714,
+  "top30_submission_status": "time_limit_exceeded",
+  "training_required": false
+}

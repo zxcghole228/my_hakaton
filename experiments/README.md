@@ -7,7 +7,8 @@
 experiments/
 ├── e5_small_macro_v2/
 ├── e5_small_macro_v3/
-└── e5_small_v4_structured_ensemble/
+├── e5_small_v4_structured_ensemble/
+└── e5_bge_selective_v6/
 ```
 
 Checkpoint, веса, datasets и generated predictions сюда не добавляются.
