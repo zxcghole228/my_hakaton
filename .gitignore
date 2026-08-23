@@ -84,3 +84,4 @@ solutions/*/models/
 !notebooks/runs/
 !notebooks/runs/**
 !data_polygon/*.parquet
+!scores/**
