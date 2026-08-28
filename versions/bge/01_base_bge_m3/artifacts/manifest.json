@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "version_id": "bge_base_m3",
+  "path_base": "versions/bge/01_base_bge_m3",
+  "artifacts": [
+    {
+      "role": "deploy_model_weights",
+      "path": "solution/original/models/user-bge-human-ft/model.safetensors",
+      "status": "available_locally_ignored_by_git",
+      "size_bytes": 1436159092,
+      "sha256": "d1c65bd374abf91cc8373bfee05b1c706c34acf0c8aa83e88e4f0a409ea20735",
+      "required_for_docker": true,
+      "committed_to_git": false
+    },
+    {
+      "role": "model_config",
+      "path": "solution/original/models/user-bge-human-ft/config.json",
+      "status": "tracked_in_git",
+      "size_bytes": 755,
+      "sha256": "e0aa4828d27de78036025290aef1e721b19a6097cf322e63538a0927ca4d7d89",
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "tokenizer",
+      "path": "solution/original/models/user-bge-human-ft/tokenizer.json",
+      "status": "tracked_in_git",
+      "size_bytes": 3327704,
+      "sha256": "cce17082262570f04a4695b9fd2422a1723d2753b3719dce84e66c690108b247",
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "tokenizer_config",
+      "path": "solution/original/models/user-bge-human-ft/tokenizer_config.json",
+      "status": "tracked_in_git",
+      "size_bytes": 1392,
+      "sha256": "1dec13033264a5b1b29b0e1ff7e88ebfef86c85b523de168b9845bee774e596f",
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "sentencepiece_model",
+      "path": "solution/original/models/user-bge-human-ft/sentencepiece.bpe.model",
+      "status": "tracked_in_git",
+      "size_bytes": 1042866,
+      "sha256": "1538f6a9b7588645542db5c84f16c0b8e00a93ba9dbef13792ea065bdda403fb",
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "special_tokens_map",
+      "path": "solution/original/models/user-bge-human-ft/special_tokens_map.json",
+      "status": "tracked_in_git",
+      "size_bytes": 963,
+      "sha256": "66e573bfc6c3b062381e41274f7fd4143daaf01926888ffbd880c87aa6368443",
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "best_training_checkpoint",
+      "reported_source_path": "research_worker_s42_02/best.pt",
+      "status": "not_collected",
+      "reported_size_mib": 1369.71,
+      "sha256": null,
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "last_evaluated_checkpoint",
+      "reported_source_path": "research_worker_s42_02/last.pt",
+      "status": "not_collected",
+      "reported_size_mib": 1369.71,
+      "sha256": null,
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "training_history",
+      "reported_source_path": "research_worker_s42_02/training_history.jsonl",
+      "status": "not_collected",
+      "sha256": null,
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "training_log",
+      "reported_source_path": "research_worker_s42_02/train.log",
+      "status": "not_collected",
+      "sha256": null,
+      "required_for_docker": false,
+      "committed_to_git": false
+    }
+  ]
+}
