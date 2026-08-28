@@ -1,17 +1,19 @@
-# macOS
+# OS and editors
 .DS_Store
 .AppleDouble
 .LSOverride
+.idea/
+.vscode/
 
-# Python bytecode and tooling
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 .coverage
 htmlcov/
+*.egg-info/
 
 # Virtual environments and local configuration
 .venv/
@@ -21,42 +23,36 @@ env/
 .env.*
 !.env.example
 
-# Build and package outputs
-build/
-dist/
-*.egg-info/
-
-# IDEs and notebooks
-.idea/
-.vscode/
+# Notebook and framework caches
 .ipynb_checkpoints/
-
-# Local caches and temporary files
 .cache/
-.tmp/
 .torch_cache/
 .huggingface/
-tmp/
-temp/
+wandb/
+mlruns/
 
-# Competition data and generated submissions
-data/
-datasets/
-submissions/
+# Local competition data and model artifacts
+data/local/
+artifacts/local/
+outputs/
+runs/
+checkpoints/
+submit_staging/
+
+# Generated release contexts and archives
+dist/
+build/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# Dataset and prediction formats
 *.parquet
 *.feather
 *.arrow
 
-# Experiment tracking and generated artifacts
-artifacts/
-outputs/
-runs/
-wandb/
-mlruns/
-checkpoints/
-
-# Large model files. Restore the bundled baseline model from the organizer archive.
-models/
+# Model weights and serialized estimators
 *.ckpt
 *.pt
 *.pth
@@ -65,11 +61,23 @@ models/
 *.safetensors
 *.msgpack
 *.joblib
-!baseline_logreg_l12.joblib
 
-# Local archives
-*.zip
-*.tar
-*.tar.gz
-*.tgz
+
+# Legacy/local model storage
+/models/
+
+# Keep only repository documentation inside local artifact/data directories
+/artifacts/*
+!/artifacts/.gitkeep
+!/artifacts/README.md
+
+/data/*
+!/data/.gitkeep
+!/data/README.md
+
+# Legacy solutions preserved locally but excluded from the rebuilt repository
+/solutions/cross_encoder_baseline/
+/solutions/e5_small_v2/
+/solutions/e5_small_v3_hybrid/
+/solutions/e5_small_v4_structured_ensemble/
 
