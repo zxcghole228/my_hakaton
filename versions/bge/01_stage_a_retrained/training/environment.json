@@ -1,0 +1,12 @@
+{
+  "python": "3.12",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.57.6",
+  "numpy": "2.2.6",
+  "pandas": "2.3.3",
+  "pyarrow": "23.0.1",
+  "scikit_learn": "1.8.0",
+  "reported_gpu": "NVIDIA H100 PCIe",
+  "reported_gpu_count": 2,
+  "source": "executed notebook outputs"
+}

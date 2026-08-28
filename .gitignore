@@ -34,10 +34,10 @@ mlruns/
 # Local competition data and model artifacts
 data/local/
 artifacts/local/
-outputs/
-runs/
-checkpoints/
-submit_staging/
+/outputs/
+/runs/
+/checkpoints/
+/submit_staging/
 
 # Generated release contexts and archives
 dist/
