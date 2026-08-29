@@ -1,0 +1,58 @@
+[
+  {
+    "checkpoint": "step_00400",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/checkpoints/step_00400.pt",
+    "tune_macro": 0.7792724380896393,
+    "problem_ap": 0.5734296650292274,
+    "gray_full": 0.555873649377277,
+    "composite_score": 0.6093314149457247
+  },
+  {
+    "checkpoint": "step_00800",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/checkpoints/step_00800.pt",
+    "tune_macro": 0.793311755358232,
+    "problem_ap": 0.6206126112252838,
+    "gray_full": 0.5486342905330786,
+    "composite_score": 0.6335589438442119
+  },
+  {
+    "checkpoint": "step_01200",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/checkpoints/step_01200.pt",
+    "tune_macro": 0.7978397170906766,
+    "problem_ap": 0.630174624272523,
+    "gray_full": 0.549150498755729,
+    "composite_score": 0.6394004051811155
+  },
+  {
+    "checkpoint": "step_01600",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/checkpoints/step_01600.pt",
+    "tune_macro": 0.8001837666436119,
+    "problem_ap": 0.638911034130421,
+    "gray_full": 0.549986227298481,
+    "composite_score": 0.6444881385834772
+  },
+  {
+    "checkpoint": "step_02000",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/checkpoints/step_02000.pt",
+    "tune_macro": 0.8014799038426847,
+    "problem_ap": 0.64351657159236,
+    "gray_full": 0.5503581474640523,
+    "composite_score": 0.6471617108039327
+  },
+  {
+    "checkpoint": "step_02400",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/checkpoints/step_02400.pt",
+    "tune_macro": 0.8018706521026253,
+    "problem_ap": 0.6437391736726313,
+    "gray_full": 0.5492779227503592,
+    "composite_score": 0.6470270940819485
+  },
+  {
+    "checkpoint": "last",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/last.pt",
+    "tune_macro": 0.8018706521026253,
+    "problem_ap": 0.6437391736726313,
+    "gray_full": 0.5492779227503592,
+    "composite_score": 0.6470270940819485
+  }
+]

@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "version_id": "bge_stage_b_v2_checkpoint_soup",
+  "path_base": "versions/bge/02_stage_b_v2_checkpoint_soup_8515",
+  "artifacts": [
+    {
+      "role": "deploy_model_weights",
+      "path": "solution/original/models/user-bge-human-ft/model.safetensors",
+      "status": "available_locally_ignored_by_git",
+      "size_bytes": 1436159092,
+      "sha256": "d51bd8b0170a4a0d307d803050fa8aa1bc525fd2780e8b4faef6a13e8c6e3d93",
+      "required_for_docker": true,
+      "committed_to_git": false
+    },
+    {
+      "role": "model_config",
+      "path": "solution/original/models/user-bge-human-ft/config.json",
+      "status": "tracked_in_git",
+      "size_bytes": 755,
+      "sha256": "e0aa4828d27de78036025290aef1e721b19a6097cf322e63538a0927ca4d7d89",
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "tokenizer",
+      "path": "solution/original/models/user-bge-human-ft/tokenizer.json",
+      "status": "tracked_in_git",
+      "size_bytes": 3327704,
+      "sha256": "cce17082262570f04a4695b9fd2422a1723d2753b3719dce84e66c690108b247",
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "tokenizer_config",
+      "path": "solution/original/models/user-bge-human-ft/tokenizer_config.json",
+      "status": "tracked_in_git",
+      "size_bytes": 1392,
+      "sha256": "1dec13033264a5b1b29b0e1ff7e88ebfef86c85b523de168b9845bee774e596f",
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "sentencepiece_model",
+      "path": "solution/original/models/user-bge-human-ft/sentencepiece.bpe.model",
+      "status": "tracked_in_git",
+      "size_bytes": 1042866,
+      "sha256": "1538f6a9b7588645542db5c84f16c0b8e00a93ba9dbef13792ea065bdda403fb",
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "special_tokens_map",
+      "path": "solution/original/models/user-bge-human-ft/special_tokens_map.json",
+      "status": "tracked_in_git",
+      "size_bytes": 963,
+      "sha256": "66e573bfc6c3b062381e41274f7fd4143daaf01926888ffbd880c87aa6368443",
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "stage_a_initialization_checkpoint",
+      "reported_source_path": "research_worker_s42_02/best.pt",
+      "status": "not_collected",
+      "sha256": null,
+      "required_for_docker": false,
+      "required_for_training": true,
+      "committed_to_git": false
+    },
+    {
+      "role": "teacher_probability_cache",
+      "reported_source_path": "v2_soup_s42_01/stageb_v2/teacher_probs.npz",
+      "status": "reproducible_not_collected",
+      "sha256": null,
+      "generation_command": "python training/reconstructed/train_bge_stageb_v2.py --precompute-teacher",
+      "required_for_docker": false,
+      "required_for_training": true,
+      "committed_to_git": false
+    },
+    {
+      "role": "checkpoint_soup_input_a",
+      "reported_source_path": "v2_soup_s42_01/stageb_v2/checkpoints/step_00400.pt",
+      "status": "not_collected_hash_reported_by_model_author",
+      "size_bytes": 1436274567,
+      "sha256": "517c8f0ac9b4d74c982d31157914c876bf541803bef2fff9b79e40ec615bbaec",
+      "soup_weight": 0.15,
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "checkpoint_soup_input_b",
+      "reported_source_path": "v2_soup_s42_01/stageb_v2/checkpoints/step_02000.pt",
+      "status": "not_collected_hash_reported_by_model_author",
+      "size_bytes": 1436274567,
+      "sha256": "553d3a165aca6db16c26244a4eefe9ff6d57f7687ef5a8031b398711956f37a5",
+      "soup_weight": 0.85,
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "checkpoint_soup_output",
+      "reported_source_path": "v2_soup_s42_01/soup_run/best.pt",
+      "status": "not_collected_hash_reported_by_model_author",
+      "size_bytes": 1436212729,
+      "sha256": "c842d53b45dec9aa00419dfc5f7a2bd911e1163d7273eecd31bf7f76fb208c18",
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "submitted_solution_archive",
+      "reported_source_path": "matching-bge-human-ft-submit.zip",
+      "status": "verified_locally_not_committed",
+      "size_bytes": 1330444872,
+      "sha256": "908f60451f01463d7574e488c4655bea2b52bbac7fa19be43842a8e0a3ee5260",
+      "public_leaderboard_macro_ap": 0.5520634383301408,
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "recovered_source_archive",
+      "reported_source_path": "executed_source.zip",
+      "status": "verified_locally_not_committed",
+      "size_bytes": 73385,
+      "sha256": "d3128fbe5b70e63b97ba631c017e8e16aca6fa6c9235aaf98e5cc967123d42e0",
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "stage_b_training_log",
+      "path": "runs/v2_soup_s42_01/stageb_v2.log",
+      "status": "tracked_in_git",
+      "size_bytes": 9965,
+      "sha256": "55000d0f0ea694b9a907128a4b0228e18d4e96a8b3263aab411633b1f7242ad7",
+      "required_for_docker": false,
+      "committed_to_git": true
+    },
+    {
+      "role": "stage_b_best_checkpoint_metadata",
+      "path": "runs/v2_soup_s42_01/stageb_v2/best_checkpoint.json",
+      "status": "tracked_in_git",
+      "size_bytes": 828,
+      "sha256": "e0272b4677fb2b9bc6d32a41b119c52a0298784fec62b2c87affb49aaf9c0397",
+      "required_for_docker": false,
+      "committed_to_git": true
+    },
+    {
+      "role": "stage_b_checkpoint_evaluations",
+      "path": "runs/v2_soup_s42_01/stageb_v2/checkpoint_evals.jsonl",
+      "status": "tracked_in_git",
+      "size_bytes": 1732,
+      "sha256": "0262c712236d0eb4e9762086fc6a11d0140ef5541fbf4602a2d30bf4046bbb45",
+      "required_for_docker": false,
+      "committed_to_git": true
+    },
+    {
+      "role": "stage_b_checkpoint_sweep",
+      "path": "runs/v2_soup_s42_01/stageb_v2/checkpoint_sweep.json",
+      "status": "tracked_in_git",
+      "size_bytes": 2252,
+      "sha256": "8ef513d25bcf8a953fa09e5430a57e44a89a80552ee2a6f04323ff3b54925c53",
+      "required_for_docker": false,
+      "committed_to_git": true
+    },
+    {
+      "role": "stage_b_metrics",
+      "path": "runs/v2_soup_s42_01/stageb_v2/metrics.json",
+      "status": "tracked_in_git",
+      "size_bytes": 1762,
+      "sha256": "e2a6d7f2c80075274003786900654b2a2ba36bf0a6d3b938a7d9dfd2fe393f71",
+      "required_for_docker": false,
+      "committed_to_git": true
+    },
+    {
+      "role": "checkpoint_soup_metrics",
+      "path": "runs/v2_soup_s42_01/soup_run/metrics.json",
+      "status": "tracked_in_git",
+      "size_bytes": 1994,
+      "sha256": "197c26547799a95f443ee6614308770eacfda514248b5def25943d7632188a72",
+      "required_for_docker": false,
+      "committed_to_git": true
+    },
+    {
+      "role": "checkpoint_soup_grid",
+      "path": "runs/v2_soup_s42_01/soup_run/soup_grid.json",
+      "status": "tracked_in_git",
+      "size_bytes": 1216,
+      "sha256": "861339883622916a79029e80b5ebdeab335a0ae9e000ea531170b167d4d22bb8",
+      "required_for_docker": false,
+      "committed_to_git": true
+    }
+  ]
+}

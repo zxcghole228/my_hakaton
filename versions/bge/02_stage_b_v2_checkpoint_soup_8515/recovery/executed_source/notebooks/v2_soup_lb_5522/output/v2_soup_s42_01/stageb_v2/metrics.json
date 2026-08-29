@@ -1,0 +1,55 @@
+{
+  "version": "stageb_v2",
+  "init": "/home/dgbabenko/assistant-peft/notebooks/initial_stage_a_user_bge/output/research_worker_s42_02/best.pt",
+  "selected_checkpoint": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/checkpoints/step_02000.pt",
+  "best_pt": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/best.pt",
+  "export_fp16": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/export_fp16",
+  "loss_weights": {
+    "label": 0.5,
+    "distill": 0.2,
+    "rank": 0.22,
+    "symm": 0.1
+  },
+  "llm_replay": {
+    "pool_per_cat": 12000,
+    "hard_per_cat": 8000,
+    "anchor_per_cat": 3000
+  },
+  "gray_caps": {
+    "fashion": 2000,
+    "other": 500
+  },
+  "score_weights": {
+    "problem": 0.5,
+    "gray_full": 0.3,
+    "tune": 0.2
+  },
+  "final_tune": {
+    "name": "tune",
+    "macro_ap": 0.8014799038426847,
+    "problem_ap": 0.64351657159236,
+    "agree": 0.8861482149198284,
+    "pred_pos": 0.21098636947198776
+  },
+  "final_eval": {
+    "name": "eval",
+    "macro_ap": 0.7880562268028682,
+    "problem_ap": 0.6108496054050877,
+    "agree": 0.88603654040473,
+    "pred_pos": 0.209629407105989
+  },
+  "final_gray_sample": 0.5638593163649511,
+  "final_gray_full": 0.5503581474640523,
+  "composite_final": 0.6471617108039327,
+  "train_rows": 318117,
+  "epochs": 2,
+  "sweep_n_checkpoints": 7,
+  "sweep_best": {
+    "checkpoint": "step_02000",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/checkpoints/step_02000.pt",
+    "tune_macro": 0.8014799038426847,
+    "problem_ap": 0.64351657159236,
+    "gray_full": 0.5503581474640523,
+    "composite_score": 0.6471617108039327
+  }
+}
