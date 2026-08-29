@@ -1,0 +1,11 @@
+[
+  {
+    "alpha_step400": 0.17,
+    "weight_step2000": 0.83,
+    "gray_full": 0.5554132425182203,
+    "problem_ap": 0.634591481855638,
+    "tune_macro": 0.7987693804111746,
+    "composite_score": 0.64367358976552,
+    "elapsed_s": 324.8
+  }
+]

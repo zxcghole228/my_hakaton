@@ -1,0 +1,66 @@
+[
+  {
+    "checkpoint": "step_00200",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00200.pt",
+    "tune_macro": 0.7490915024079454,
+    "problem_ap": 0.5013580957072249,
+    "gray_full": 0.5897289838050909,
+    "composite_score": 0.5906716766914086
+  },
+  {
+    "checkpoint": "step_00200_ema",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00200_ema.pt",
+    "tune_macro": 0.6985530020439932,
+    "problem_ap": 0.40786239517551665,
+    "gray_full": 0.5972379767808931,
+    "composite_score": 0.5512195282716313
+  },
+  {
+    "checkpoint": "step_00400",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00400.pt",
+    "tune_macro": 0.7589808536282078,
+    "problem_ap": 0.5281239186685118,
+    "gray_full": 0.5912601037457198,
+    "composite_score": 0.6027065889451946
+  },
+  {
+    "checkpoint": "step_00400_ema",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00400_ema.pt",
+    "tune_macro": 0.7113311093432795,
+    "problem_ap": 0.43158056971241665,
+    "gray_full": 0.5981877042919741,
+    "composite_score": 0.56250388819939
+  },
+  {
+    "checkpoint": "step_00600",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00600.pt",
+    "tune_macro": 0.761367671851467,
+    "problem_ap": 0.5351681227196512,
+    "gray_full": 0.5934142254224464,
+    "composite_score": 0.6066187787622722
+  },
+  {
+    "checkpoint": "step_00600_ema",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00600_ema.pt",
+    "tune_macro": 0.7223372273769374,
+    "problem_ap": 0.45445911692810725,
+    "gray_full": 0.5982340950357674,
+    "composite_score": 0.5727334791663203
+  },
+  {
+    "checkpoint": "last",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/last.pt",
+    "tune_macro": 0.761367671851467,
+    "problem_ap": 0.5351681227196512,
+    "gray_full": 0.5934142254224464,
+    "composite_score": 0.6066187787622722
+  },
+  {
+    "checkpoint": "last_ema",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/last_ema.pt",
+    "tune_macro": 0.7223372273769374,
+    "problem_ap": 0.45445911692810725,
+    "gray_full": 0.5982340950357674,
+    "composite_score": 0.5727334791663203
+  }
+]

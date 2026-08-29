@@ -1,0 +1,84 @@
+$ cd *** && CUDA_VISIBLE_DEVICES=0 python ***/train_bge_stageb_v3.py --precompute-teacher
+PRECOMPUTE teacher cache (single GPU)
+manual split: {'train': 292508, 'tune': 36584, 'eval': 36562}
+loading 805,302 texts...
+items_human hit 711,304/805,302
+items.parquet scan; missing left 0; total texts 805,302
+oversample Обувь: 292,508 -> 307,197 human train rows
+gray: full=45,831 sample=11,851
+Some weights of XLMRobertaForSequenceClassification were not initialized from the model checkpoint at deepvk/USER-bge-m3 and are newly initialized: ['classifier.dense.bias', 'classifier.dense.weight', 'classifier.out_proj.bias', 'classifier.out_proj.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+scoring teacher probs for human train (307,197 pairs)...
+  human: 128/307,197 (0.0%) 315 pair/s
+  human: 25,728/307,197 (8.4%) 577 pair/s
+  human: 51,328/307,197 (16.7%) 579 pair/s
+  human: 76,928/307,197 (25.0%) 579 pair/s
+  human: 102,528/307,197 (33.4%) 575 pair/s
+  human: 128,128/307,197 (41.7%) 576 pair/s
+  human: 153,728/307,197 (50.0%) 578 pair/s
+  human: 179,328/307,197 (58.4%) 578 pair/s
+  human: 204,928/307,197 (66.7%) 578 pair/s
+  human: 230,528/307,197 (75.0%) 578 pair/s
+  human: 256,128/307,197 (83.4%) 578 pair/s
+  human: 281,728/307,197 (91.7%) 578 pair/s
+scoring teacher probs for llm pool (12,000 pairs)...
+  llm_pool: 128/12,000 (1.1%) 631 pair/s
+scoring Stage-A teacher on full gray (45,831 pairs)...
+  gray_full: 128/45,831 (0.3%) 618 pair/s
+  gray_full: 25,728/45,831 (56.1%) 557 pair/s
+saved teacher cache -> /home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/teacher_probs.npz
+$ cd *** && CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.run --nproc_per_node=2 ***/train_bge_stageb_v3.py
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+[rank0]:[W827 15:16:15.101772852 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank1]:[W827 15:16:15.184912930 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
+libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
+STAGE-B v3 FINAL | gpus=2 batch=128 accum=2 amp=torch.bfloat16
+init=/home/dgbabenko/assistant-peft/notebooks/initial_stage_a_user_bge/output/research_worker_s42_02/best.pt out=/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3
+loss w: label=0.45 distill=0.18 gray_distill=0.4 rank=0.2 symm=0.1
+sweep w: problem=0.35 gray=0.45 tune=0.2
+epochs=1 max_steps=1200 eval_every=200 ema=0.999
+manual split: {'train': 292508, 'tune': 36584, 'eval': 36562}
+loading 805,302 texts...
+items_human hit 711,304/805,302
+items.parquet scan; missing left 0; total texts 805,302
+oversample Обувь: 292,508 -> 307,197 human train rows
+gray: full=45,831 sample=11,851
+loaded teacher cache (gray=45,831)
+train rows 364,028 by source: {'human': 307197, 'gray': 45831, 'llm_hard': 8251, 'llm_anchor': 2749} | ordered 364,028
+Some weights of XLMRobertaForSequenceClassification were not initialized from the model checkpoint at deepvk/USER-bge-m3 and are newly initialized: ['classifier.dense.bias', 'classifier.dense.weight', 'classifier.out_proj.bias', 'classifier.out_proj.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Some weights of XLMRobertaForSequenceClassification were not initialized from the model checkpoint at deepvk/USER-bge-m3 and are newly initialized: ['classifier.dense.bias', 'classifier.dense.weight', 'classifier.out_proj.bias', 'classifier.out_proj.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+trainable 152.2M / 359.0M params
+baseline tune AP=0.6889 problem=0.3923
+baseline eval AP=0.6879 gray_sample=0.5870
+ep0 step 100/710 loss=0.8711 123 pair/s
+ep0 step 200/710 loss=0.9507 179 pair/s
+  >> step 200: tune=0.7491 problem=0.5014 gray_sample=0.5796 score_sample=0.5861 -> /home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00200.pt
+ep0 step 300/710 loss=0.9703 182 pair/s
+ep0 step 400/710 loss=0.8861 204 pair/s
+  >> step 400: tune=0.7590 problem=0.5281 gray_sample=0.5800 score_sample=0.5976 -> /home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00400.pt
+ep0 step 500/710 loss=0.8804 201 pair/s
+ep0 step 600/710 loss=0.9216 214 pair/s
+  >> step 600: tune=0.7614 problem=0.5352 gray_sample=0.5818 score_sample=0.6014 -> /home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00600.pt
+ep0 step 700/710 loss=0.8098 210 pair/s
+sweep 8 checkpoints on FULL gray (45,831 pairs)...
+  step_00200: tune=0.7491 problem=0.5014 gray_full=0.5897 score=0.5907
+  step_00200_ema: tune=0.6986 problem=0.4079 gray_full=0.5972 score=0.5512
+  step_00400: tune=0.7590 problem=0.5281 gray_full=0.5913 score=0.6027
+  step_00400_ema: tune=0.7113 problem=0.4316 gray_full=0.5982 score=0.5625
+  step_00600: tune=0.7614 problem=0.5352 gray_full=0.5934 score=0.6066
+  step_00600_ema: tune=0.7223 problem=0.4545 gray_full=0.5982 score=0.5727
+  last: tune=0.7614 problem=0.5352 gray_full=0.5934 score=0.6066
+  last_ema: tune=0.7223 problem=0.4545 gray_full=0.5982 score=0.5727
+BEST sweep: /home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00600.pt score=0.6066 (problem=0.5352 gray=0.5934 tune=0.7614)
+saved BEST weights -> /home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/best.pt (from /home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00600.pt)
+export BEST -> /home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/export and /home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/export_fp16
+DONE BEST=/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00600.pt
+  tune={'name': 'tune', 'macro_ap': 0.761367671851467, 'problem_ap': 0.5351681227196512, 'agree': 0.8754646840148699, 'pred_pos': 0.21055652744369124} eval={'name': 'eval', 'macro_ap': 0.7599251709335982, 'problem_ap': 0.5509318439763966, 'agree': 0.8723264591652535, 'pred_pos': 0.20666265521579782}
+  gray_sample=0.5818 gray_full=0.5934 composite=0.6066
+metrics /home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/metrics.json | manifest /home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/best_checkpoint.json

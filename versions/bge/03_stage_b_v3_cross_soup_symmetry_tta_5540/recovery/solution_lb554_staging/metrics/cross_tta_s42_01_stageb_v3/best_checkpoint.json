@@ -1,0 +1,14 @@
+{
+  "selected_checkpoint": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00600.pt",
+  "best_pt": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/best.pt",
+  "export": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/export",
+  "export_fp16": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/export_fp16",
+  "sweep_best": {
+    "checkpoint": "step_00600",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00600.pt",
+    "tune_macro": 0.761367671851467,
+    "problem_ap": 0.5351681227196512,
+    "gray_full": 0.5934142254224464,
+    "composite_score": 0.6066187787622722
+  }
+}

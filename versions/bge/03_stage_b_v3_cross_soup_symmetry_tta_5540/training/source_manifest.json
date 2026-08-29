@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "source_archive": {
+    "filename": "solution_source_lb554.zip",
+    "size_bytes": 141472,
+    "sha256": "d6dc53d7cd5144664a2bc4d434cf033dd6ea65ec1c6b7e11afb86ad08460e2d9",
+    "status": "verified_local_not_committed"
+  },
+  "files": [
+    {
+      "role": "executed_training_notebook",
+      "path": "training/original/pipeline_public.ipynb",
+      "source_path": "notebooks/symmetry_tta_v3_soup/pipeline_public.ipynb",
+      "size_bytes": 42996,
+      "sha256": "c96b1b60b4311263018f661b554026d37854577b201144056744b28e07c3f25e"
+    },
+    {
+      "role": "stage_b_v3_training",
+      "path": "training/reconstructed/train_bge_stageb_v3.py",
+      "source_path": "scripts/final_4_models/scripts/train_bge_stageb_v3.py",
+      "size_bytes": 40122,
+      "sha256": "61a9ac40c9663660dcd8ff0618742a76debef549e05da85d2b24c3531285c902"
+    },
+    {
+      "role": "checkpoint_soup_construction",
+      "path": "training/reconstructed/blend_checkpoint_soup.py",
+      "source_path": "scripts/final_4_models/scripts/blend_checkpoint_soup.py",
+      "size_bytes": 14085,
+      "sha256": "078c079fd36a8af9189555bdf873ebbdd382f196889bc3debdb45a22135a472a"
+    },
+    {
+      "role": "ensemble_scoring",
+      "path": "training/reconstructed/score_ensemble.py",
+      "source_path": "scripts/final_4_models/scripts/score_ensemble.py",
+      "size_bytes": 11135,
+      "sha256": "78f7ff9e528ddf7dc18ee8941c3aa5fdcc9f757ac480373fcecaa84b61ce3b1f"
+    },
+    {
+      "role": "gray_validation",
+      "path": "training/reconstructed/score_val_gray.py",
+      "source_path": "scripts/final_4_models/scripts/score_val_gray.py",
+      "size_bytes": 5752,
+      "sha256": "21de0803ce25857992ddd19d7160c42bf672775fecfa9eda3eda579ce8d6110f"
+    },
+    {
+      "role": "canonical_preprocessing",
+      "path": "training/reconstructed/pair_text_v1.py",
+      "source_path": "scripts/notebooks/lib/pair_text_v1.py",
+      "size_bytes": 3709,
+      "sha256": "cdce31cd07265078ed592eed003e3db695a028247ea89389f979c295ee822d52"
+    },
+    {
+      "role": "preprocessing_verification",
+      "path": "training/reconstructed/verify_pair_text.py",
+      "source_path": "scripts/notebooks/lib/verify_pair_text.py",
+      "size_bytes": 4923,
+      "sha256": "586afe24da3ba93279f2f071cd96b8b60a94c75cbd35d126c1fd2caa28ac629e"
+    },
+    {
+      "role": "original_solution_builder",
+      "path": "construction/original/build_submit.py",
+      "source_path": "notebooks/symmetry_tta_v3_soup/build_submit.py",
+      "size_bytes": 1960,
+      "sha256": "308b9a62f28db8962d27f01c182c56c9fa509ac411658cd03f230b3d9e4779df"
+    }
+  ]
+}

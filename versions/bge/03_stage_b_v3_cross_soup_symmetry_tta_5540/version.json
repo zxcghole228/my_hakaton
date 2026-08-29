@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "id": "bge_stage_b_v3_cross_soup_symmetry_tta",
+  "family": "bge",
+  "stage": "human_stage_b_v3_cross_checkpoint_soup_symmetry_tta",
+  "status": "candidate",
+  "base_model": {
+    "name": "deepvk/USER-bge-m3",
+    "revision": null,
+    "revision_status": "missing",
+    "license": "apache-2.0"
+  },
+  "lineage": {
+    "stage_b_v3_initialization": {
+      "parent_version": "../01_base_bge_m3",
+      "initialization_type": "stage_a_checkpoint",
+      "initialization_run_id": "research_worker_s42_02",
+      "initialization_artifact": "best.pt",
+      "initialization_artifact_status": "not_collected"
+    },
+    "cross_soup_checkpoint_b": {
+      "parent_version": "../02_stage_b_v2_checkpoint_soup_8515",
+      "run_id": "v2_soup_s42_01",
+      "artifact": "step_02000.pt",
+      "artifact_status": "not_collected",
+      "size_bytes": 1436274567,
+      "sha256": "553d3a165aca6db16c26244a4eefe9ff6d57f7687ef5a8031b398711956f37a5"
+    }
+  },
+  "data": {
+    "items": "items.parquet",
+    "items_human": "items_human.parquet",
+    "matches_human": "matches.parquet",
+    "matches_llm": "matches_llm.parquet",
+    "reported_item_rows": 13397761,
+    "reported_manual_match_rows": 365654,
+    "reported_llm_match_rows": 11187780,
+    "custom_llm_relabeling": false,
+    "committed_to_git": false
+  },
+  "training": {
+    "run_id": "cross_tta_s42_01",
+    "seed": 20260826,
+    "component_split_seed": 20260826,
+    "epochs": 1,
+    "max_steps": 1200,
+    "reported_optimizer_steps": 710,
+    "max_length": 320,
+    "backbone_learning_rate": 0.000005,
+    "head_learning_rate": 0.00002,
+    "warmup_ratio": 0.05,
+    "swap_probability": 0.5,
+    "unfreeze_last_n": 12,
+    "world_size": 2,
+    "gpu_ids": [
+      0,
+      1
+    ],
+    "batch_per_gpu": 128,
+    "gradient_accumulation_steps": 2,
+    "effective_global_batch": 512,
+    "checkpoint_interval_steps": 200,
+    "sweep_checkpoint_count": 8,
+    "teacher_cache_precomputed": true,
+    "manual_tune_fraction": 0.1,
+    "manual_eval_fraction": 0.1,
+    "train_rows": 364028,
+    "gray_train_rows": 45831,
+    "ema_decay": 0.999,
+    "loss_weights": {
+      "label": 0.45,
+      "distill": 0.18,
+      "gray_distill": 0.4,
+      "rank": 0.2,
+      "symmetry": 0.1
+    },
+    "distillation_temperature": 1.5,
+    "gray_label_weight": 0.25,
+    "rank_margin": 0.1,
+    "rank_temperature": 0.2,
+    "llm_replay": {
+      "pool_per_category": 12000,
+      "hard_per_category": 8000,
+      "anchor_per_category": 3000
+    },
+    "gray_caps": {
+      "fashion": 2000,
+      "other": 500
+    },
+    "selection_weights": {
+      "problem_categories": 0.35,
+      "full_gray": 0.45,
+      "tune_macro": 0.2
+    }
+  },
+  "checkpoint_soup": {
+    "checkpoint_a": {
+      "stage": "stage_b_v3",
+      "filename": "step_00400.pt",
+      "weight": 0.17,
+      "status": "not_collected"
+    },
+    "checkpoint_b": {
+      "stage": "stage_b_v2",
+      "filename": "step_02000.pt",
+      "weight": 0.83,
+      "status": "documented_in_parent_version",
+      "size_bytes": 1436274567,
+      "sha256": "553d3a165aca6db16c26244a4eefe9ff6d57f7687ef5a8031b398711956f37a5"
+    },
+    "formula": "theta = (1-alpha) * checkpoint_b + alpha * checkpoint_a",
+    "alpha_checkpoint_a": 0.17,
+    "weight_checkpoint_b": 0.83,
+    "symmetry_tta_evaluation": true,
+    "inference_model_count": 1
+  },
+  "preprocessing": {
+    "contract": "pair_text_v1",
+    "attribute_character_limit": 520,
+    "maximum_text_characters": 2000
+  },
+  "metrics": {
+    "stage_b_v3_selected_checkpoint": "step_00600",
+    "stage_b_v3_tune_macro_ap": 0.761367671851467,
+    "stage_b_v3_problem_ap": 0.5351681227196512,
+    "stage_b_v3_full_gray_ap": 0.5934142254224464,
+    "stage_b_v3_composite": 0.6066187787622722,
+    "cross_soup_alpha": 0.17,
+    "cross_soup_tune_macro_ap": 0.7987693804111746,
+    "cross_soup_problem_ap": 0.634591481855638,
+    "cross_soup_full_gray_ap": 0.5554132425182203,
+    "cross_soup_composite": 0.64367358976552,
+    "public_leaderboard_macro_ap": 0.5539900397479464
+  },
+  "leaderboard": {
+    "submission_id": null,
+    "public_macro_ap": 0.5539900397479464,
+    "score_source": "team_reported",
+    "weight_association": "confirmed_by_model_author"
+  },
+  "solution": {
+    "original_snapshot": "solution/original",
+    "runtime": "solution/runtime",
+    "model_source": "solution/original/models/user-bge-human-ft",
+    "model_destination": "models/user-bge-m3-v3-cross-soup-tta",
+    "inference_type": "single_sequence_classifier_with_bidirectional_scoring",
+    "symmetry_tta": true,
+    "symmetry_tta_formula": "0.5 * p(item_1,item_2) + 0.5 * p(item_2,item_1)",
+    "checkpoint_soup": true,
+    "checkpoint_ensemble": false,
+    "output_columns": [
+      "id1",
+      "id2",
+      "predict"
+    ],
+    "runtime_status": "statically_validated"
+  },
+  "weights": {
+    "filename": "model.safetensors",
+    "size_bytes": 1436159092,
+    "sha256": "b9d98750751a2442a946f6d9188fa3cda251df4d818ad0b23fa13abf223469da",
+    "committed_to_git": false
+  },
+  "historical_artifacts": {
+    "stage_b_v3_step_00400": {
+      "filename": "step_00400.pt",
+      "size_bytes": null,
+      "sha256": null,
+      "status": "not_collected"
+    },
+    "stage_b_v3_step_00600": {
+      "filename": "step_00600.pt",
+      "size_bytes": null,
+      "sha256": null,
+      "status": "not_collected"
+    },
+    "soup_best": {
+      "filename": "best.pt",
+      "size_bytes": null,
+      "sha256": null,
+      "status": "not_collected"
+    },
+    "source_archive": {
+      "filename": "solution_source_lb554.zip",
+      "size_bytes": 141472,
+      "sha256": "d6dc53d7cd5144664a2bc4d434cf033dd6ea65ec1c6b7e11afb86ad08460e2d9",
+      "status": "verified_local"
+    },
+    "solution_archive_without_weights": {
+      "filename": "matching-bge-human-ft-v3-soup-tta.zip",
+      "size_bytes": 825859,
+      "sha256": "c94933a30e8a8e7381af0bac1d064a2464d9be91797f409196c942fa09a1abc4",
+      "status": "verified_local"
+    }
+  },
+  "provenance": {
+    "training_source_status": "collected_from_model_author_source_snapshot",
+    "recovery_snapshot": "recovery/solution_lb554_staging",
+    "source_archive_sha256": "d6dc53d7cd5144664a2bc4d434cf033dd6ea65ec1c6b7e11afb86ad08460e2d9",
+    "original_training_script_status": "collected",
+    "executed_notebook_status": "collected",
+    "final_weight_status": "verified_local_ignored_by_git"
+  },
+  "selection": {
+    "candidate_number": 3,
+    "final_selected": null
+  }
+}
