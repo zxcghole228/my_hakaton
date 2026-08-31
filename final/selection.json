@@ -21,13 +21,16 @@
       "weight_sha256": "b9d98750751a2442a946f6d9188fa3cda251df4d818ad0b23fa13abf223469da",
       "runtime_archive": {
         "rank": 1,
-        "filename": "bge-stage-b-v3-cross-soup-symmetry-tta-runtime.zip",
-        "local_path": "artifacts/final-submissions/bge-stage-b-v3-cross-soup-symmetry-tta-runtime.zip",
-        "size_bytes": 1324788905,
-        "sha256": "9c88057e7b50fd49f7b73c76c6b0ae9e59f673bc850fff7ce33ecca070e54de1",
-        "archive_root": "matching-bge-human-ft-v3-soup-tta",
+        "filename": "bge-stage-b-v3-fixed-rebuilt.zip",
+        "local_path": "artifacts/final-submissions/bge-stage-b-v3-fixed-rebuilt.zip",
+        "size_bytes": 1324785706,
+        "sha256": "8be6ae608eaa80a64522c26522a00f58e35a50df1ac41276779b5640fbd63879",
+        "archive_root": ".",
+        "archive_layout": "flat",
         "model_sha256": "b9d98750751a2442a946f6d9188fa3cda251df4d818ad0b23fa13abf223469da",
-        "builder": "versions/bge/03_stage_b_v3_cross_soup_symmetry_tta_5540/construction/runtime/build_submit.py",
+        "builder": "versions/bge/03_stage_b_v3_cross_soup_symmetry_tta_5540/construction/fix/build_submit.py",
+        "runtime_source": "versions/bge/03_stage_b_v3_cross_soup_symmetry_tta_5540/construction/fix/runtime",
+        "payload_reference": "saved_historical_fixed_solution_without_weights",
         "status": "verified_local",
         "committed_to_git": false
       }
@@ -62,7 +65,8 @@
   },
   "notes": [
     "Public leaderboard scores belong to the historical platform submissions associated with the verified weights.",
-    "Corrected runtime archives use the same verified weights but were not independently rerun on the platform.",
+    "The V3 fixed archive reproduces the saved historical runtime payload file-for-file and uses the same verified model weights; its outer ZIP was rebuilt locally.",
+    "The rebuilt V3 archive and the corrected V2 runtime archive were not independently rerun on the platform.",
     "Large runtime archives and model weights are intentionally excluded from Git."
   ]
 }
