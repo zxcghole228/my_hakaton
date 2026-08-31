@@ -1,130 +1,56 @@
 # Сторонние компоненты и лицензии
 
-Этот документ перечисляет основные сторонние модели и библиотеки, непосредственно используемые BGE-решениями E-CUP 2026.
+Документ перечисляет основные сторонние компоненты, используемые BGE-решениями команды для E-CUP 2026.
 
-Проверка выполнена по официальным страницам проектов 31 августа 2026 года.
-
-Документ не заменяет полные тексты лицензий. При распространении Docker-образа, Python wheels или других бинарных сборок необходимо сохранять входящие в них `LICENSE` и `NOTICE`.
+Сведения проверены по официальным страницам проектов 31 августа 2026 года. Документ не заменяет полные тексты лицензий. При распространении моделей, Python-пакетов, Docker-образов и других бинарных материалов необходимо сохранять применимые файлы `LICENSE`, `NOTICE` и уведомления об авторских правах.
 
 ## Базовая модель
 
-| Компонент            | Использование                       | Лицензия   | Официальный источник                                                 |
-| -------------------- | ----------------------------------- | ---------- | -------------------------------------------------------------------- |
-| `deepvk/USER-bge-m3` | Базовая модель всех трёх кандидатов | Apache-2.0 | [Hugging Face model card](https://huggingface.co/deepvk/USER-bge-m3) |
+| Компонент            | Использование              | Лицензия   | Источник                                                             |
+| -------------------- | -------------------------- | ---------- | -------------------------------------------------------------------- |
+| `deepvk/USER-bge-m3` | Базовая модель BGE-решений | Apache-2.0 | [Hugging Face model card](https://huggingface.co/deepvk/USER-bge-m3) |
 
-Все финальные BGE-веса получены дообучением или объединением checkpoint этой модели.
+Представленные BGE-веса получены дообучением или объединением контрольных точек этой модели.
 
-Точная исходная ревизия модели не была записана. Это ограничение отдельно отмечено в `version.json` и документации воспроизводимости.
+Точная ревизия базовой модели, использованная при обучении, не была сохранена. Это ограничение зафиксировано в `version.json`.
 
 ## Основные библиотеки
 
-| Компонент     | Использование                | Основная лицензия                  | Официальный источник                                                                   |
-| ------------- | ---------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------- |
-| Python        | Язык выполнения              | PSF License Version 2              | [CPython LICENSE](https://github.com/python/cpython/blob/main/LICENSE)                 |
-| PyTorch       | Обучение и инференс          | BSD-style, дополнительные notices  | [PyTorch LICENSE](https://github.com/pytorch/pytorch/blob/main/LICENSE)                |
-| Transformers  | Модель и tokenizer           | Apache-2.0                         | [Transformers LICENSE](https://github.com/huggingface/transformers/blob/main/LICENSE)  |
-| Tokenizers    | Быстрый tokenizer            | Apache-2.0                         | [Tokenizers LICENSE](https://github.com/huggingface/tokenizers/blob/main/LICENSE)      |
-| Safetensors   | Формат финальных весов       | Apache-2.0                         | [Safetensors LICENSE](https://github.com/safetensors/safetensors/blob/main/LICENSE)    |
-| SentencePiece | XLM-RoBERTa tokenizer        | Apache-2.0                         | [SentencePiece LICENSE](https://github.com/google/sentencepiece/blob/master/LICENSE)   |
-| NumPy         | Работа с массивами           | BSD-3-Clause для основного проекта | [NumPy license metadata](https://github.com/numpy/numpy/blob/main/pyproject.toml)      |
-| pandas        | Табличные данные             | BSD-3-Clause для основного проекта | [pandas LICENSE](https://github.com/pandas-dev/pandas/blob/main/LICENSE)               |
-| PyArrow       | Чтение Parquet               | Apache-2.0, дополнительные notices | [Apache Arrow LICENSE](https://github.com/apache/arrow/blob/main/LICENSE.txt)          |
-| scikit-learn  | Метрики обучения и валидации | BSD-3-Clause                       | [scikit-learn COPYING](https://github.com/scikit-learn/scikit-learn/blob/main/COPYING) |
-| tqdm          | Индикаторы выполнения        | MPL-2.0 и MIT notices              | [tqdm LICENCE](https://github.com/tqdm/tqdm/blob/master/LICENCE)                       |
+| Компонент     | Использование                | Лицензия                            | Источник                                                                               |
+| ------------- | ---------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------- |
+| Python        | Среда выполнения             | PSF License Version 2               | [CPython LICENSE](https://github.com/python/cpython/blob/main/LICENSE)                 |
+| PyTorch       | Обучение и инференс          | BSD-style и дополнительные notices  | [PyTorch LICENSE](https://github.com/pytorch/pytorch/blob/main/LICENSE)                |
+| Transformers  | Работа с моделью и tokenizer | Apache-2.0                          | [Transformers LICENSE](https://github.com/huggingface/transformers/blob/main/LICENSE)  |
+| Tokenizers    | Токенизация                  | Apache-2.0                          | [Tokenizers LICENSE](https://github.com/huggingface/tokenizers/blob/main/LICENSE)      |
+| Safetensors   | Формат хранения весов        | Apache-2.0                          | [Safetensors LICENSE](https://github.com/huggingface/safetensors/blob/main/LICENSE)    |
+| SentencePiece | Токенизация XLM-RoBERTa      | Apache-2.0                          | [SentencePiece LICENSE](https://github.com/google/sentencepiece/blob/master/LICENSE)   |
+| NumPy         | Работа с массивами           | BSD-3-Clause                        | [NumPy license metadata](https://github.com/numpy/numpy/blob/main/pyproject.toml)      |
+| pandas        | Обработка таблиц             | BSD-3-Clause                        | [pandas LICENSE](https://github.com/pandas-dev/pandas/blob/main/LICENSE)               |
+| PyArrow       | Чтение Parquet               | Apache-2.0 и дополнительные notices | [Apache Arrow LICENSE](https://github.com/apache/arrow/blob/main/LICENSE.txt)          |
+| scikit-learn  | Метрики и валидация          | BSD-3-Clause                        | [scikit-learn COPYING](https://github.com/scikit-learn/scikit-learn/blob/main/COPYING) |
+| tqdm          | Отображение прогресса        | MPL-2.0 и MIT notices               | [tqdm LICENCE](https://github.com/tqdm/tqdm/blob/master/LICENCE)                       |
 
-## Что проверено
+Список охватывает основные непосредственно используемые компоненты, но не является полным перечнем транзитивных зависимостей Docker-образа. Отдельные пакеты могут содержать дополнительные лицензионные уведомления.
 
-Статический анализ исходных Python-файлов и code cells notebook подтвердил прямое использование:
+## Среда выполнения
 
-```text
-numpy
-pandas
-pyarrow
-sklearn
-torch
-tqdm
-transformers
-```
+Решения используют Docker-образ `odsai/ecup26-matching-baseline:1.0`.
 
-`tokenizers`, `sentencepiece` и `safetensors` используются модельным форматом или устанавливаются как зависимости Transformers.
+Обучение выполнялось с PyTorch `2.6.0+cu124` на NVIDIA H100. Docker-образ, драйверы NVIDIA и CUDA Runtime поставляются отдельно и не входят в состав репозитория. Их использование регулируется лицензиями соответствующих поставщиков.
 
-В training- и runtime-коде не обнаружено импортов:
+## Данные соревнования
 
-```text
-tensorflow
-catboost
-xgboost
-lightgbm
-```
+В решениях используются следующие файлы:
 
-Также runtime не содержит вызовов платных или закрытых inference API.
+* `items.parquet`;
+* `items_human.parquet`;
+* `matches.parquet`;
+* `matches_llm.parquet`.
 
-## Транзитивные зависимости
-
-Этот список не является полным software bill of materials Docker-образа.
-
-Python wheels могут включать дополнительные компоненты и лицензии. Например:
-
-* NumPy wheels могут содержать сторонние математические библиотеки;
-* pandas распространяется с дополнительными license notices;
-* Apache Arrow содержит собственный `NOTICE` и список включённых компонентов;
-* PyTorch содержит дополнительные notices для встроенных и связанных проектов.
-
-Полный аудит распространяемого Docker-образа должен выполняться по фактическому содержимому конкретного image digest, а не только по прямым импортам репозитория.
-
-## Docker-образ
-
-Все исходные submission ссылаются на:
-
-```text
-odsai/ecup26-matching-baseline:1.0
-```
-
-Это внешний Docker-образ, указанный в `metadata.json`. Репозиторий не содержит его слои и не может независимо подтвердить полный перечень находящихся внутри пакетов.
-
-Перед финальной проверкой необходимо убедиться, что:
-
-* образ доступен площадке;
-* используется ожидаемый tag или digest;
-* его использование разрешено организаторами;
-* содержащиеся в нём license notices сохранены поставщиком образа.
-
-## CUDA и системное окружение
-
-Обучение выполнялось с PyTorch `2.6.0+cu124` на NVIDIA H100.
-
-NVIDIA driver и CUDA runtime являются системной инфраструктурой вычислительной площадки и не распространяются в этом Git-репозитории.
-
-Если требование об отсутствии проприетарного ПО распространяется также на системную GPU-инфраструктуру, допустимость CUDA необходимо отдельно подтвердить у организаторов. Репозиторий не скрывает её использование.
-
-## Данные
-
-Лицензии библиотек и модели не определяют права на распространение датасетов.
-
-Файлы соревнования:
-
-```text
-items.parquet
-items_human.parquet
-matches.parquet
-matches_llm.parquet
-```
-
-не добавляются в Git. Их использование и распространение регулируются правилами E-CUP 2026.
+Датасеты не добавляются в Git. Права на их использование и распространение определяются правилами E-CUP 2026 и условиями предоставления данных организаторами.
 
 ## Код команды
 
-Этот документ описывает только сторонние компоненты и не назначает лицензию собственному коду команды.
+Документ описывает только сторонние компоненты и не предоставляет лицензию на собственный код команды.
 
-Лицензия собственного кода должна быть оформлена отдельным корневым файлом `LICENSE` после согласования всеми правообладателями команды. До появления такого файла нельзя автоматически считать код опубликованным под Apache-2.0 или другой open-source лицензией.
-
-## Итог
-
-Основная модель и непосредственно используемые Python-библиотеки опубликованы под открытыми лицензиями.
-
-Открытыми вопросами остаются:
-
-* полный состав и notices Docker-образа;
-* допустимость системной CUDA-инфраструктуры в трактовке правил;
-* лицензия собственного кода команды;
-* условия распространения датасетов соревнования.
+Если команда решит лицензировать собственный код, условия должны быть зафиксированы в отдельном корневом файле `LICENSE` после согласования со всеми авторами.
