@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "training/original/pipeline_public.ipynb",
+      "sha256": "23fe1b52f320ce9bbedf4c533f15b5f0dc801919f43c1ddecdf4f1d1f5c541d7"
+    },
+    {
+      "path": "training/original/train_user_bge_m3_320.py",
+      "sha256": "f905bf36591a6c3fc5a412a85fa637460b962463aae25f84f376e494b8acd6b6"
+    }
+  ]
+}

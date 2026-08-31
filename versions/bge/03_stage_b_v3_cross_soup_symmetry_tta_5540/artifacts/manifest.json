@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "version_id": "bge_stage_b_v3_cross_soup_symmetry_tta",
+  "path_base": "versions/bge/03_stage_b_v3_cross_soup_symmetry_tta_5540",
+  "artifacts": [
+    {
+      "role": "deploy_model_weights",
+      "path": "solution/original/models/user-bge-human-ft/model.safetensors",
+      "status": "available_locally_ignored_by_git",
+      "size_bytes": 1436159092,
+      "sha256": "b9d98750751a2442a946f6d9188fa3cda251df4d818ad0b23fa13abf223469da",
+      "required_for_runtime": true,
+      "required_for_docker": true,
+      "committed_to_git": false
+    },
+    {
+      "role": "model_config",
+      "path": "solution/original/models/user-bge-human-ft/config.json",
+      "status": "tracked_in_git",
+      "size_bytes": 840,
+      "sha256": "dce5292d40b9ccc26008bec2663cf8a972e89ac9b95616df100751abe5f5adc8",
+      "required_for_runtime": true,
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "tokenizer",
+      "path": "solution/original/models/user-bge-human-ft/tokenizer.json",
+      "status": "tracked_in_git",
+      "size_bytes": 3327538,
+      "sha256": "a103899553362761806e7cb54eb43dab2d61684bf6e1ea8ff4b1a5ff3621a0aa",
+      "required_for_runtime": true,
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "tokenizer_config",
+      "path": "solution/original/models/user-bge-human-ft/tokenizer_config.json",
+      "status": "tracked_in_git",
+      "size_bytes": 600,
+      "sha256": "fc9b2761c4e3aa73907a422b17949afd1d64aee91a0461b28f55a1f016e90fdb",
+      "required_for_runtime": true,
+      "required_for_docker": true,
+      "committed_to_git": true
+    },
+    {
+      "role": "cross_soup_checkpoint_b_stage_b_v2",
+      "reported_source_path": "../02_stage_b_v2_checkpoint_soup_8515/step_02000.pt",
+      "status": "documented_in_parent_version_not_collected",
+      "size_bytes": 1436274567,
+      "sha256": "553d3a165aca6db16c26244a4eefe9ff6d57f7687ef5a8031b398711956f37a5",
+      "blend_weight": 0.83,
+      "required_for_runtime": false,
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "cross_soup_checkpoint_a_stage_b_v3",
+      "reported_source_path": "cross_tta_s42_01/stageb_v3/checkpoints/step_00400.pt",
+      "status": "not_collected",
+      "size_bytes": null,
+      "sha256": null,
+      "blend_weight": 0.17,
+      "required_for_runtime": false,
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "stage_b_v3_selected_standalone_checkpoint",
+      "reported_source_path": "cross_tta_s42_01/stageb_v3/checkpoints/step_00600.pt",
+      "status": "not_collected",
+      "size_bytes": null,
+      "sha256": null,
+      "required_for_runtime": false,
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "cross_soup_best_checkpoint",
+      "reported_source_path": "cross_tta_a017/soup_run/best.pt",
+      "status": "not_collected",
+      "size_bytes": null,
+      "sha256": null,
+      "required_for_runtime": false,
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "source_archive",
+      "reported_source_path": "solution_source_lb554.zip",
+      "status": "verified_local_outside_repository",
+      "size_bytes": 141472,
+      "sha256": "d6dc53d7cd5144664a2bc4d434cf033dd6ea65ec1c6b7e11afb86ad08460e2d9",
+      "required_for_runtime": false,
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "solution_archive_without_weights",
+      "reported_source_path": "matching-bge-human-ft-v3-soup-tta.zip",
+      "status": "verified_local_outside_repository",
+      "size_bytes": 825859,
+      "sha256": "c94933a30e8a8e7381af0bac1d064a2464d9be91797f409196c942fa09a1abc4",
+      "required_for_runtime": false,
+      "required_for_docker": false,
+      "committed_to_git": false
+    },
+    {
+      "role": "full_submission_archive",
+      "reported_source_path": null,
+      "status": "not_collected",
+      "size_bytes": null,
+      "sha256": null,
+      "required_for_runtime": false,
+      "required_for_docker": false,
+      "committed_to_git": false
+    }
+  ]
+}

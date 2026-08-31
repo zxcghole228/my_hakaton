@@ -1,0 +1,12 @@
+{
+  "model": "deepvk/USER-bge-m3",
+  "max_length": 320,
+  "epochs": 2,
+  "swap_probability": 0.5,
+  "confidence_weighting": true,
+  "full_llm_holdout_macro_ap": 0.860026,
+  "best_fastval_macro_ap": 0.8633551084605952,
+  "best_fastval_step": 40000,
+  "world_size": 2,
+  "reported_total_optimizer_steps": 42774
+}

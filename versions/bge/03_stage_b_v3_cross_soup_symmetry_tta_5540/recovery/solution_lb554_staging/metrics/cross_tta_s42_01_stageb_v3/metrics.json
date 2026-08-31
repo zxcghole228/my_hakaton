@@ -1,0 +1,55 @@
+{
+  "version": "stageb_v3_final",
+  "init": "/home/dgbabenko/assistant-peft/notebooks/initial_stage_a_user_bge/output/research_worker_s42_02/best.pt",
+  "selected_checkpoint": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00600.pt",
+  "best_pt": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/best.pt",
+  "export_fp16": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/export_fp16",
+  "loss_weights": {
+    "label": 0.45,
+    "distill": 0.18,
+    "gray_distill": 0.4,
+    "rank": 0.2,
+    "symm": 0.1
+  },
+  "gray_train_rows": 45831,
+  "llm_replay": {
+    "pool_per_cat": 12000,
+    "hard_per_cat": 8000,
+    "anchor_per_cat": 3000
+  },
+  "score_weights": {
+    "problem": 0.35,
+    "gray_full": 0.45,
+    "tune": 0.2
+  },
+  "ema_decay": 0.999,
+  "max_steps": 1200,
+  "final_tune": {
+    "name": "tune",
+    "macro_ap": 0.761367671851467,
+    "problem_ap": 0.5351681227196512,
+    "agree": 0.8754646840148699,
+    "pred_pos": 0.21055652744369124
+  },
+  "final_eval": {
+    "name": "eval",
+    "macro_ap": 0.7599251709335982,
+    "problem_ap": 0.5509318439763966,
+    "agree": 0.8723264591652535,
+    "pred_pos": 0.20666265521579782
+  },
+  "final_gray_sample": 0.5818138669156206,
+  "final_gray_full": 0.5934142254224464,
+  "composite_final": 0.6066187787622722,
+  "train_rows": 364028,
+  "epochs": 1,
+  "sweep_n_checkpoints": 8,
+  "sweep_best": {
+    "checkpoint": "step_00600",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00600.pt",
+    "tune_macro": 0.761367671851467,
+    "problem_ap": 0.5351681227196512,
+    "gray_full": 0.5934142254224464,
+    "composite_score": 0.6066187787622722
+  }
+}

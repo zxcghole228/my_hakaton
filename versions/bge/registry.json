@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "family": "bge",
+  "competition": "E-CUP 2026",
+  "task": "product_matching",
+  "metric": "macro_pr_auc",
+  "base_model": {
+    "name": "deepvk/USER-bge-m3",
+    "source": "https://huggingface.co/deepvk/USER-bge-m3",
+    "license": "apache-2.0",
+    "training_revision": null,
+    "training_revision_status": "not_recorded"
+  },
+  "candidates": [
+    {
+      "candidate_number": 1,
+      "id": "bge_base_m3",
+      "path": "01_base_bge_m3",
+      "stage": "baseline_finetune",
+      "public_macro_ap": 0.5136543845676982,
+      "checkpoint_soup": false,
+      "symmetry_tta": false,
+      "weight_size_bytes": 1436159092,
+      "weight_sha256": "d1c65bd374abf91cc8373bfee05b1c706c34acf0c8aa83e88e4f0a409ea20735",
+      "weight_committed_to_git": false,
+      "status": "candidate",
+      "final_selected": false,
+      "final_rank": null
+    },
+    {
+      "candidate_number": 2,
+      "id": "bge_stage_b_v2_checkpoint_soup",
+      "path": "02_stage_b_v2_checkpoint_soup_8515",
+      "stage": "human_stage_b_checkpoint_soup",
+      "public_macro_ap": 0.5520634383301408,
+      "checkpoint_soup": true,
+      "symmetry_tta": false,
+      "weight_size_bytes": 1436159092,
+      "weight_sha256": "d51bd8b0170a4a0d307d803050fa8aa1bc525fd2780e8b4faef6a13e8c6e3d93",
+      "weight_committed_to_git": false,
+      "status": "candidate",
+      "final_selected": true,
+      "final_rank": 2,
+      "runtime_archive": {
+        "rank": 2,
+        "filename": "bge-stage-b-v2-checkpoint-soup-runtime.zip",
+        "local_path": "artifacts/final-submissions/bge-stage-b-v2-checkpoint-soup-runtime.zip",
+        "size_bytes": 1330445700,
+        "sha256": "3ff5fcd473fe2c69d80ca076942b448d178c806bbaa0f3f591606c614a055c04",
+        "archive_root": "matching-bge-human-ft-v2-soup",
+        "model_sha256": "d51bd8b0170a4a0d307d803050fa8aa1bc525fd2780e8b4faef6a13e8c6e3d93",
+        "builder": "versions/bge/02_stage_b_v2_checkpoint_soup_8515/construction/runtime/build_submit.py",
+        "status": "verified_local",
+        "committed_to_git": false
+      }
+    },
+    {
+      "candidate_number": 3,
+      "id": "bge_stage_b_v3_cross_soup_symmetry_tta",
+      "path": "03_stage_b_v3_cross_soup_symmetry_tta_5540",
+      "stage": "human_stage_b_v3_cross_checkpoint_soup_symmetry_tta",
+      "public_macro_ap": 0.5539900397479464,
+      "checkpoint_soup": true,
+      "symmetry_tta": true,
+      "weight_size_bytes": 1436159092,
+      "weight_sha256": "b9d98750751a2442a946f6d9188fa3cda251df4d818ad0b23fa13abf223469da",
+      "weight_committed_to_git": false,
+      "status": "candidate",
+      "final_selected": true,
+      "final_rank": 1,
+      "runtime_archive": {
+        "rank": 1,
+        "filename": "bge-stage-b-v3-cross-soup-symmetry-tta-runtime.zip",
+        "local_path": "artifacts/final-submissions/bge-stage-b-v3-cross-soup-symmetry-tta-runtime.zip",
+        "size_bytes": 1324788905,
+        "sha256": "9c88057e7b50fd49f7b73c76c6b0ae9e59f673bc850fff7ce33ecca070e54de1",
+        "archive_root": "matching-bge-human-ft-v3-soup-tta",
+        "model_sha256": "b9d98750751a2442a946f6d9188fa3cda251df4d818ad0b23fa13abf223469da",
+        "builder": "versions/bge/03_stage_b_v3_cross_soup_symmetry_tta_5540/construction/runtime/build_submit.py",
+        "status": "verified_local",
+        "committed_to_git": false
+      }
+    }
+  ],
+  "final_selection": {
+    "maximum_selected_solutions": 2,
+    "status": "team_finalized",
+    "selected_candidate_ids": [
+      "bge_stage_b_v3_cross_soup_symmetry_tta",
+      "bge_stage_b_v2_checkpoint_soup"
+    ],
+    "selection_basis": "highest_documented_public_macro_ap",
+    "corrected_runtime_platform_status": "not_rerun_on_platform"
+  }
+}

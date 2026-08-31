@@ -1,0 +1,15 @@
+{
+  "alpha": 0.15,
+  "lb_prior_alpha005": 0.5526942615,
+  "offline": {
+    "alpha_step400": 0.15,
+    "weight_step2000": 0.85,
+    "gray_full": 0.5543684372022831,
+    "problem_ap": 0.6357064304846792,
+    "tune_macro": 0.7992268760362596,
+    "composite_score": 0.6440091216102765,
+    "elapsed_s": 302.1
+  },
+  "use_reference_v2": false,
+  "symmetry_tta": true
+}

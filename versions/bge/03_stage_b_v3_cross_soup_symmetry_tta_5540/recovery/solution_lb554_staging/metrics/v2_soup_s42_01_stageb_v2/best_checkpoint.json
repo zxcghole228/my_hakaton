@@ -1,0 +1,14 @@
+{
+  "selected_checkpoint": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/checkpoints/step_02000.pt",
+  "best_pt": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/best.pt",
+  "export": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/export",
+  "export_fp16": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/export_fp16",
+  "sweep_best": {
+    "checkpoint": "step_02000",
+    "path": "/home/dgbabenko/assistant-peft/notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/checkpoints/step_02000.pt",
+    "tune_macro": 0.8014799038426847,
+    "problem_ap": 0.64351657159236,
+    "gray_full": 0.5503581474640523,
+    "composite_score": 0.6471617108039327
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "model": "deepvk/USER-bge-m3",
+  "items_path": "items.parquet",
+  "matches_path": "matches_llm.parquet",
+  "seed": 42,
+  "component_split_seed": 13,
+  "epochs": 2,
+  "learning_rate": 0.00002,
+  "max_length": 320,
+  "swap_probability": 0.5,
+  "pair_text": "v1",
+  "attribute_character_limit": 520,
+  "physical_gpu_ids": "0,3",
+  "nproc": 2,
+  "batch_per_gpu": 128,
+  "gradient_accumulation": 2,
+  "target_global_batch": 512,
+  "loss_log_every_steps": 250,
+  "eval_every_steps": 8000
+}

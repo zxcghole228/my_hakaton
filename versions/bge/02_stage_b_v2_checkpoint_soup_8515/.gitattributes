@@ -1,0 +1,6 @@
+construction/original/** -whitespace
+recovery/** -whitespace
+runs/** -whitespace
+solution/original/** -whitespace
+training/original/** -whitespace
+training/reconstructed/** -whitespace

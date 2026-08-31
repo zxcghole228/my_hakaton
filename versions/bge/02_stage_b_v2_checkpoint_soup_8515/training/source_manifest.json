@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "source_status": "reconstructed_from_executed_notebook_and_outputs",
+  "source_archive": {
+    "filename": "executed_source.zip",
+    "sha256": "d3128fbe5b70e63b97ba631c017e8e16aca6fa6c9235aaf98e5cc967123d42e0",
+    "committed_to_git": false
+  },
+  "files": [
+    {
+      "role": "executed_training_notebook",
+      "path": "training/original/pipeline_2_checkpoints.ipynb",
+      "sha256": "ed5e56c6bbb5e88e38fd5d1a5daaf3da21a0b292d172796821ac253a15656bf0"
+    },
+    {
+      "role": "original_solution_builder",
+      "path": "construction/original/build_submit.py",
+      "sha256": "381a45686dcd23175aac753998b3a2e0d35f23cdcdef9ea442772145cd1638a2"
+    },
+    {
+      "role": "reconstructed_training_script",
+      "path": "training/reconstructed/train_bge_stageb_v2.py",
+      "sha256": "029e49a55044d8e7af26eb32259cce121f61b9b805079bda7b88045409e8efaf"
+    },
+    {
+      "role": "checkpoint_soup_builder",
+      "path": "training/reconstructed/blend_checkpoint_soup.py",
+      "sha256": "eebc6ae0ca5c9bd57993d5554a361f1bb3ab1424e5ecce5d6320818cef6b5b23"
+    },
+    {
+      "role": "checkpoint_scoring",
+      "path": "training/reconstructed/score_ensemble.py",
+      "sha256": "78f7ff9e528ddf7dc18ee8941c3aa5fdcc9f757ac480373fcecaa84b61ce3b1f"
+    },
+    {
+      "role": "gray_validation",
+      "path": "training/reconstructed/score_val_gray.py",
+      "sha256": "21de0803ce25857992ddd19d7160c42bf672775fecfa9eda3eda579ce8d6110f"
+    },
+    {
+      "role": "submitted_preprocessing",
+      "path": "training/reconstructed/pair_text_v1.py",
+      "sha256": "cdce31cd07265078ed592eed003e3db695a028247ea89389f979c295ee822d52"
+    },
+    {
+      "role": "preprocessing_contract_test",
+      "path": "training/reconstructed/verify_pair_text.py",
+      "sha256": "586afe24da3ba93279f2f071cd96b8b60a94c75cbd35d126c1fd2caa28ac629e"
+    },
+    {
+      "role": "comparison_preprocessing_package",
+      "path": "training/reconstructed/ecup_v2/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "comparison_preprocessing",
+      "path": "training/reconstructed/ecup_v2/pair_text.py",
+      "sha256": "a4915027dc457887758a307ff5e45272ff9409099237c49e8749cc3a3dbdf49e"
+    },
+    {
+      "role": "recovery_snapshot_manifest",
+      "path": "recovery/executed_source/MANIFEST.md",
+      "sha256": "314e8057e3d169ccf27c295182df1f5f4689a08c6b9dd0141565a54f345a808b"
+    },
+    {
+      "role": "corrected_solution_builder",
+      "path": "construction/runtime/build_submit.py",
+      "sha256": "c2411427f00f0d99bef5629cfff8c2497f5aff358fc4158ea4886dfb1a30840e"
+    }
+  ]
+}

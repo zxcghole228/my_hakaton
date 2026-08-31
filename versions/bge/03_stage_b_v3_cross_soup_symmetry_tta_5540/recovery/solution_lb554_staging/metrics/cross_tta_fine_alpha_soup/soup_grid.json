@@ -1,0 +1,29 @@
+[
+  {
+    "alpha_step400": 0.16,
+    "weight_step2000": 0.84,
+    "gray_full": 0.5548065945808273,
+    "problem_ap": 0.635145535726711,
+    "tune_macro": 0.7990020574914279,
+    "composite_score": 0.6438151577358893,
+    "elapsed_s": 317.4
+  },
+  {
+    "alpha_step400": 0.17,
+    "weight_step2000": 0.83,
+    "gray_full": 0.5554132425182203,
+    "problem_ap": 0.634591481855638,
+    "tune_macro": 0.7987693804111746,
+    "composite_score": 0.64367358976552,
+    "elapsed_s": 318.1
+  },
+  {
+    "alpha_step400": 0.18,
+    "weight_step2000": 0.8200000000000001,
+    "gray_full": 0.5558716566935429,
+    "problem_ap": 0.6338489496037647,
+    "tune_macro": 0.798504862855373,
+    "composite_score": 0.6433869443810198,
+    "elapsed_s": 318.0
+  }
+]

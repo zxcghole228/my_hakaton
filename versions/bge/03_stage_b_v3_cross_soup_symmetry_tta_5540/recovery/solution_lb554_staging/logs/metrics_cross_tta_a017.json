@@ -1,0 +1,31 @@
+{
+  "version": "checkpoint_soup",
+  "symmetry_tta_eval": true,
+  "blend": {
+    "ckpt_a": "notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00400.pt",
+    "ckpt_b": "notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/checkpoints/step_02000.pt",
+    "formula": "theta = (1-alpha)*B + alpha*A",
+    "best_alpha": 0.17,
+    "best_weight_b": 0.83
+  },
+  "best_metrics": {
+    "alpha_step400": 0.17,
+    "weight_step2000": 0.83,
+    "gray_full": 0.5554132425182203,
+    "problem_ap": 0.634591481855638,
+    "tune_macro": 0.7987693804111746,
+    "composite_score": 0.64367358976552,
+    "elapsed_s": 324.8
+  },
+  "grid": [
+    {
+      "alpha_step400": 0.17,
+      "weight_step2000": 0.83,
+      "gray_full": 0.5554132425182203,
+      "problem_ap": 0.634591481855638,
+      "tune_macro": 0.7987693804111746,
+      "composite_score": 0.64367358976552,
+      "elapsed_s": 324.8
+    }
+  ]
+}

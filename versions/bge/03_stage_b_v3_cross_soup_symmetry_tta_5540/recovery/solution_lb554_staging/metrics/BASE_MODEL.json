@@ -1,0 +1,32 @@
+{
+  "name": "cross_tta_gray_a015",
+  "description": "LB best 0.5539 — v3@400 × v2@2000 cross-soup + symmetry TTA",
+  "lb_macro_ap": 0.5539,
+  "blend_formula": "(1-alpha)*v2_step2000 + alpha*v3_step400",
+  "alpha": 0.15,
+  "symmetry_tta": true,
+  "pair_text": "v1",
+  "paths": {
+    "run_dir": "notebooks/symmetry_tta_v3_soup/output/cross_tta_gray_a015/soup_run",
+    "best_pt": "notebooks/symmetry_tta_v3_soup/output/cross_tta_gray_a015/soup_run/best.pt",
+    "export_fp16": "notebooks/symmetry_tta_v3_soup/output/cross_tta_gray_a015/soup_run/export_fp16",
+    "submit_zip": "notebooks/symmetry_tta_v3_soup/output/cross_tta_gray_a015/soup_run/matching-bge-human-ft-submit.zip",
+    "v3_ckpt": "notebooks/symmetry_tta_v3_soup/output/cross_tta_s42_01/stageb_v3/checkpoints/step_00400.pt",
+    "v2_ckpt": "notebooks/v2_soup_lb_5522/output/v2_soup_s42_01/stageb_v2/checkpoints/step_02000.pt"
+  },
+  "offline_tta": {
+    "gray_full": 0.5544,
+    "problem_ap": 0.6357,
+    "composite": 0.6440
+  },
+  "fine_alpha_grid_tta": {
+    "0.16": {"gray_full": 0.5548, "problem_ap": 0.6351},
+    "0.17": {"gray_full": 0.5554, "problem_ap": 0.6346, "submit": "output/cross_tta_a017/soup_run/matching-bge-human-ft-submit.zip"},
+    "0.18": {"gray_full": 0.5559, "problem_ap": 0.6338}
+  },
+  "next_cheap": [
+    "LB submit α=0.17 (gray +0.001 vs current) or α=0.18 (max gray)",
+    "fashion hardmine teacher = export_fp16 best, 0.5ep v2@2000, pair_text v1",
+    "inference rules Obuv/Odezhda on top of best zip"
+  ]
+}

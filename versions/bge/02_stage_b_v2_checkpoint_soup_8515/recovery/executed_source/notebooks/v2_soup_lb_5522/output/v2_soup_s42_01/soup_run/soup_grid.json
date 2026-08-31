@@ -1,0 +1,47 @@
+[
+  {
+    "alpha_step400": 0.15,
+    "weight_step2000": 0.85,
+    "gray_full": 0.5478190201523339,
+    "problem_ap": 0.6332693303378784,
+    "tune_macro": 0.7987087541036964,
+    "composite_score": 0.6407221220353786,
+    "elapsed_s": 150.1
+  },
+  {
+    "alpha_step400": 0.2,
+    "weight_step2000": 0.8,
+    "gray_full": 0.5481091455834968,
+    "problem_ap": 0.6305992521495123,
+    "tune_macro": 0.7979370713976837,
+    "composite_score": 0.6393197840293419,
+    "elapsed_s": 148.3
+  },
+  {
+    "alpha_step400": 0.25,
+    "weight_step2000": 0.75,
+    "gray_full": 0.5485430920038903,
+    "problem_ap": 0.6272968490091753,
+    "tune_macro": 0.7969203533487101,
+    "composite_score": 0.6375954227754967,
+    "elapsed_s": 149.4
+  },
+  {
+    "alpha_step400": 0.3,
+    "weight_step2000": 0.7,
+    "gray_full": 0.5488126628832866,
+    "problem_ap": 0.6243179813199069,
+    "tune_macro": 0.795995684048706,
+    "composite_score": 0.6360019263346806,
+    "elapsed_s": 148.2
+  },
+  {
+    "alpha_step400": 0.35,
+    "weight_step2000": 0.65,
+    "gray_full": 0.5491400099790443,
+    "problem_ap": 0.6209964861630055,
+    "tune_macro": 0.794876560742751,
+    "composite_score": 0.6342155582237663,
+    "elapsed_s": 148.0
+  }
+]

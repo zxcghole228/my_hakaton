@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "id": "bge_base_m3",
+  "family": "bge",
+  "stage": "baseline_finetune",
+  "status": "candidate",
+  "base_model": {
+    "name": "deepvk/USER-bge-m3",
+    "revision": null,
+    "revision_status": "missing",
+    "license": "apache-2.0"
+  },
+  "data": {
+    "items": "items.parquet",
+    "matches": "matches_llm.parquet",
+    "reported_item_rows": 13397761,
+    "reported_match_rows": 11187780,
+    "committed_to_git": false
+  },
+  "training": {
+    "run_id": "research_worker_s42_02",
+    "seed": 42,
+    "component_split_seed": 13,
+    "epochs": 2,
+    "learning_rate": 2e-05,
+    "max_length": 320,
+    "swap_probability": 0.5,
+    "confidence_weighting": true,
+    "target_global_batch": 512,
+    "world_size": 2,
+    "gpu_ids": [
+      0,
+      3
+    ]
+  },
+  "preprocessing": {
+    "contract": "pair_text_v1",
+    "attribute_character_limit": 520,
+    "maximum_text_characters": 2000
+  },
+  "metrics": {
+    "best_fastval_macro_ap": 0.8633551084605952,
+    "best_fastval_step": 40000,
+    "full_llm_holdout_macro_ap": 0.860026,
+    "public_leaderboard_macro_ap": 0.5136543845676982
+  },
+  "leaderboard": {
+    "submission_id": null,
+    "public_macro_ap": 0.5136543845676982,
+    "score_source": "team_reported",
+    "weight_association": "confirmed_by_model_author"
+  },
+  "solution": {
+    "original_snapshot": "solution/original",
+    "runtime": "solution/runtime",
+    "model_source": "solution/original/models/user-bge-human-ft",
+    "model_destination": "models/user-bge-m3-baseline",
+    "inference_type": "single_sequence_classifier",
+    "symmetry_tta": false,
+    "checkpoint_ensemble": false,
+    "output_columns": [
+      "id1",
+      "id2",
+      "predict"
+    ],
+    "runtime_status": "statically_validated"
+  },
+  "weights": {
+    "filename": "model.safetensors",
+    "size_bytes": 1436159092,
+    "sha256": "d1c65bd374abf91cc8373bfee05b1c706c34acf0c8aa83e88e4f0a409ea20735",
+    "committed_to_git": false
+  },
+  "selection": {
+    "candidate_number": 1,
+    "final_selected": false,
+    "final_rank": null,
+    "selection_basis": "not_selected_lower_public_macro_ap"
+  }
+}
