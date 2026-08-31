@@ -1,0 +1,19 @@
+# Versions confirmed by executed notebook outputs.
+# Python: 3.12
+# GPU environment: CUDA 12.4, 2 x NVIDIA H100 PCIe
+#
+# PyTorch CUDA wheels are resolved from the official PyTorch index.
+--extra-index-url https://download.pytorch.org/whl/cu124
+
+torch==2.6.0+cu124
+transformers==4.57.6
+numpy==2.2.6
+pandas==2.3.3
+pyarrow==23.0.1
+scikit-learn==1.8.0
+
+# Required by the code or model format, but exact original versions
+# were not recorded in the executed notebook outputs.
+tqdm
+sentencepiece
+safetensors

@@ -7,7 +7,8 @@
   "base_model": {
     "name": "deepvk/USER-bge-m3",
     "revision": null,
-    "revision_status": "missing"
+    "revision_status": "missing",
+    "license": "apache-2.0"
   },
   "data": {
     "items": "items.parquet",
