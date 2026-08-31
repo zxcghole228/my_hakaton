@@ -34,8 +34,8 @@
     "component_split_seed": 20260825,
     "epochs": 2,
     "max_length": 320,
-    "backbone_learning_rate": 0.000005,
-    "head_learning_rate": 0.00002,
+    "backbone_learning_rate": 5e-06,
+    "head_learning_rate": 2e-05,
     "warmup_ratio": 0.05,
     "swap_probability": 0.5,
     "unfreeze_last_n": 12,
@@ -161,6 +161,20 @@
   },
   "selection": {
     "candidate_number": 2,
-    "final_selected": null
+    "final_selected": true,
+    "final_rank": 2,
+    "selection_basis": "highest_documented_public_macro_ap",
+    "runtime_archive": {
+      "rank": 2,
+      "filename": "bge-stage-b-v2-checkpoint-soup-runtime.zip",
+      "local_path": "artifacts/final-submissions/bge-stage-b-v2-checkpoint-soup-runtime.zip",
+      "size_bytes": 1330445700,
+      "sha256": "3ff5fcd473fe2c69d80ca076942b448d178c806bbaa0f3f591606c614a055c04",
+      "archive_root": "matching-bge-human-ft-v2-soup",
+      "model_sha256": "d51bd8b0170a4a0d307d803050fa8aa1bc525fd2780e8b4faef6a13e8c6e3d93",
+      "builder": "versions/bge/02_stage_b_v2_checkpoint_soup_8515/construction/runtime/build_submit.py",
+      "status": "verified_local",
+      "committed_to_git": false
+    }
   }
 }

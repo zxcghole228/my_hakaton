@@ -22,7 +22,7 @@
     "seed": 42,
     "component_split_seed": 13,
     "epochs": 2,
-    "learning_rate": 0.00002,
+    "learning_rate": 2e-05,
     "max_length": 320,
     "swap_probability": 0.5,
     "confidence_weighting": true,
@@ -73,6 +73,8 @@
   },
   "selection": {
     "candidate_number": 1,
-    "final_selected": null
+    "final_selected": false,
+    "final_rank": null,
+    "selection_basis": "not_selected_lower_public_macro_ap"
   }
 }

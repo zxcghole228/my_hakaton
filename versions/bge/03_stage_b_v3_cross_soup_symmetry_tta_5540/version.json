@@ -46,8 +46,8 @@
     "max_steps": 1200,
     "reported_optimizer_steps": 710,
     "max_length": 320,
-    "backbone_learning_rate": 0.000005,
-    "head_learning_rate": 0.00002,
+    "backbone_learning_rate": 5e-06,
+    "head_learning_rate": 2e-05,
     "warmup_ratio": 0.05,
     "swap_probability": 0.5,
     "unfreeze_last_n": 12,
@@ -203,6 +203,20 @@
   },
   "selection": {
     "candidate_number": 3,
-    "final_selected": null
+    "final_selected": true,
+    "final_rank": 1,
+    "selection_basis": "highest_documented_public_macro_ap",
+    "runtime_archive": {
+      "rank": 1,
+      "filename": "bge-stage-b-v3-cross-soup-symmetry-tta-runtime.zip",
+      "local_path": "artifacts/final-submissions/bge-stage-b-v3-cross-soup-symmetry-tta-runtime.zip",
+      "size_bytes": 1324788905,
+      "sha256": "9c88057e7b50fd49f7b73c76c6b0ae9e59f673bc850fff7ce33ecca070e54de1",
+      "archive_root": "matching-bge-human-ft-v3-soup-tta",
+      "model_sha256": "b9d98750751a2442a946f6d9188fa3cda251df4d818ad0b23fa13abf223469da",
+      "builder": "versions/bge/03_stage_b_v3_cross_soup_symmetry_tta_5540/construction/runtime/build_submit.py",
+      "status": "verified_local",
+      "committed_to_git": false
+    }
   }
 }

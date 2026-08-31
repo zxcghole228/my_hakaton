@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "competition": "E-CUP 2026",
+  "task": "product_matching",
+  "family": "bge",
+  "metric": "macro_pr_auc",
+  "recorded_date": "2026-08-31",
+  "status": "team_finalized",
+  "maximum_selected_solutions": 2,
+  "selected_candidate_ids": [
+    "bge_stage_b_v3_cross_soup_symmetry_tta",
+    "bge_stage_b_v2_checkpoint_soup"
+  ],
+  "selection_basis": "two highest documented public leaderboard scores",
+  "selected_candidates": [
+    {
+      "rank": 1,
+      "id": "bge_stage_b_v3_cross_soup_symmetry_tta",
+      "version_path": "versions/bge/03_stage_b_v3_cross_soup_symmetry_tta_5540",
+      "public_macro_ap": 0.5539900397479464,
+      "weight_sha256": "b9d98750751a2442a946f6d9188fa3cda251df4d818ad0b23fa13abf223469da",
+      "runtime_archive": {
+        "rank": 1,
+        "filename": "bge-stage-b-v3-cross-soup-symmetry-tta-runtime.zip",
+        "local_path": "artifacts/final-submissions/bge-stage-b-v3-cross-soup-symmetry-tta-runtime.zip",
+        "size_bytes": 1324788905,
+        "sha256": "9c88057e7b50fd49f7b73c76c6b0ae9e59f673bc850fff7ce33ecca070e54de1",
+        "archive_root": "matching-bge-human-ft-v3-soup-tta",
+        "model_sha256": "b9d98750751a2442a946f6d9188fa3cda251df4d818ad0b23fa13abf223469da",
+        "builder": "versions/bge/03_stage_b_v3_cross_soup_symmetry_tta_5540/construction/runtime/build_submit.py",
+        "status": "verified_local",
+        "committed_to_git": false
+      }
+    },
+    {
+      "rank": 2,
+      "id": "bge_stage_b_v2_checkpoint_soup",
+      "version_path": "versions/bge/02_stage_b_v2_checkpoint_soup_8515",
+      "public_macro_ap": 0.5520634383301408,
+      "weight_sha256": "d51bd8b0170a4a0d307d803050fa8aa1bc525fd2780e8b4faef6a13e8c6e3d93",
+      "runtime_archive": {
+        "rank": 2,
+        "filename": "bge-stage-b-v2-checkpoint-soup-runtime.zip",
+        "local_path": "artifacts/final-submissions/bge-stage-b-v2-checkpoint-soup-runtime.zip",
+        "size_bytes": 1330445700,
+        "sha256": "3ff5fcd473fe2c69d80ca076942b448d178c806bbaa0f3f591606c614a055c04",
+        "archive_root": "matching-bge-human-ft-v2-soup",
+        "model_sha256": "d51bd8b0170a4a0d307d803050fa8aa1bc525fd2780e8b4faef6a13e8c6e3d93",
+        "builder": "versions/bge/02_stage_b_v2_checkpoint_soup_8515/construction/runtime/build_submit.py",
+        "status": "verified_local",
+        "committed_to_git": false
+      }
+    }
+  ],
+  "not_selected_candidate_ids": [
+    "bge_base_m3"
+  ],
+  "platform_evidence": {
+    "public_scores_recorded": true,
+    "submission_ids_recorded": false,
+    "corrected_runtime_rerun_on_platform": false
+  },
+  "notes": [
+    "Public leaderboard scores belong to the historical platform submissions associated with the verified weights.",
+    "Corrected runtime archives use the same verified weights but were not independently rerun on the platform.",
+    "Large runtime archives and model weights are intentionally excluded from Git."
+  ]
+}
